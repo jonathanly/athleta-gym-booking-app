@@ -8,8 +8,8 @@ const bookingSchema = new Schema({
   _attendees: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
-// allows searching of date & _groupClass fields
-bookingSchema.index({ date: 1, _TrainingSession: 1, _User: 1 });
+// allows searching of date, _trainingSession & _attendees fields
+bookingSchema.index({ date: 1, _trainingSession: 1, _attendees: 1 });
 
 const Booking = mongoose.model('booking', bookingSchema);
 

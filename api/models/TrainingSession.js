@@ -3,7 +3,7 @@ const db = require('./init');
 const Schema = mongoose.Schema;
 
 const trainingSessionSchema = new Schema({
-  title: String,
+  title: { type: String, required: true }
   day: {
     type: String,
     enum: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
