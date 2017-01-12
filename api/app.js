@@ -16,7 +16,6 @@ const User = require('./models/User');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
-const countersRouter = require('./routes/counters');
 const trainingSessions = require('./routes/trainingSessions');
 const bookings = require('./routes/bookings');
 
@@ -49,7 +48,6 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/auth', auth);
 //app.use('/users', users);
-app.use('/counters', countersRouter);
 app.use('/trainingSessions', trainingSessions);
 app.use('/bookings', bookings)
 

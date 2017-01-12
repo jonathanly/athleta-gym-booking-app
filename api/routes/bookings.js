@@ -1,5 +1,6 @@
 const express = require('express');
 const Booking = require('../models/Booking');
+// const TrainingSession = require('../models/TrainingSession');
 
 const router = express.Router();
 
@@ -7,26 +8,28 @@ const router = express.Router();
 // /
 // /?date=2017-01-09&groupClass=X
 router.get('/', function(req, res, next) {
-  const { date, user, trainingSession } = req.query
+  const { date, trainingSession } = req.query
   let conditions = {}
 
+  // if date query exists, set conditions.date equal to date query
   if (date) {
     conditions.date = date
   }
   if (trainingSession) {
     conditions._trainingSession = trainingSession
   }
-  if (user) {
-    conditions.user = user
-  }
+
+  // Booking.count()
+  //   .then(count => { console.log('bookings', count) })
 
   Booking.find(conditions)
-      .then(bookings => {
-          res.json(bookings);
-      })
-      .catch(err => {
-        res.json(err)
-      });
+    .populate('_trainingSession')
+    .then(bookings => {
+      res.json(bookings);
+    })
+    .catch(err => {
+      res.json({ message: err.message })
+    });
 });
 
 // Show: read specific
@@ -37,7 +40,7 @@ router.get('/:id', function(req, res, next) {
             res.json(booking);
         })
         .catch(err => {
-          res.json(err)
+          res.json({ message: err.message })
         });
 });
 
@@ -48,7 +51,7 @@ router.post('/', function(req, res, next) {
           res.json(booking);
       })
       .catch(err => {
-        res.json(err)
+        res.json({ message: err.message })
       });
 });
 //
@@ -74,7 +77,7 @@ router.delete('/:id', function(req, res, next) {
         res.json(booking);
     })
     .catch(err => {
-      res.json(err)
+      res.json({ message: err.message })
   });
 });
 

@@ -11,6 +11,6 @@ const bookingSchema = new Schema({
 // allows searching of date, _trainingSession & _attendees fields
 bookingSchema.index({ date: 1, _trainingSession: 1, _attendees: 1 });
 
-const Booking = mongoose.model('booking', bookingSchema);
+const Booking = mongoose.model('Booking', bookingSchema);
 
 module.exports = Booking
