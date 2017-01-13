@@ -9,9 +9,10 @@ const trainingSessionSchema = new Schema({
     enum: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   },
   time: String,
-  duration: { type: Number, default: 0, min: 0 },
-  capacity: { type: Number, default: 0, min: 0 },
-  dateAdded: { type: Date, default: Date.now }
+  duration: { type: Number, min: 0 },
+  capacity: { type: Number, min: 0 },
+  dateAdded: { type: Date, default: Date.now },
+  lastUpdated: { type: Date, default: Date.now }
 });
 
 const TrainingSession = mongoose.model('TrainingSession', trainingSessionSchema);

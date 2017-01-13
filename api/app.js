@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV == null) {
   require('dotenv').config(); // Load .env
 }
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -13,6 +14,7 @@ const passport = require('passport');
 
 const User = require('./models/User');
 
+// Routes
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
@@ -45,6 +47,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// defining routes
 app.use('/', index);
 app.use('/auth', auth);
 //app.use('/users', users);
