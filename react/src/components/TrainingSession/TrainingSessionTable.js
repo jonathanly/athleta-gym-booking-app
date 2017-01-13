@@ -3,6 +3,10 @@ import TrainingSessionRow from './TrainingSessionRow';
 
 class TrainingSessionTable extends React.Component {
   render() {
+    const trainingSessionRows = this.props.trainingSessions.map(trainingSession => {
+      return <TrainingSessionRow key={trainingSession._id} trainingSession={trainingSession} />
+    })
+
     return(
       <table>
         <thead>
@@ -17,7 +21,7 @@ class TrainingSessionTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {/* {trainingSessionRows} */}
+          {trainingSessionRows}
         </tbody>
       </table>
     );

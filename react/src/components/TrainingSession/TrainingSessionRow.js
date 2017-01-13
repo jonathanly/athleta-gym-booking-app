@@ -9,7 +9,7 @@ class TrainingSessionRow extends React.Component {
         <td>{trainingSession.title}</td>
         <td>{trainingSession.day}</td>
         <td>{trainingSession.time}</td>
-        <td>{trainingSession.duration}</td>
+        <td>{trainingSession.duration} mins</td>
         <td>{trainingSession.capacity}</td>
         <td>{trainingSession.dateAdded}</td>
         <td>{trainingSession.lastUpdated}</td>

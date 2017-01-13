@@ -29,6 +29,7 @@ class TrainingSession extends React.Component {
   render() {
     return(
       <div>
+        <h3>Group Training Sessions</h3>
         <TrainingSessionTable trainingSessions={this.state.trainingSessions} />
       </div>
     )
