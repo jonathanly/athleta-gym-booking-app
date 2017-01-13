@@ -8,7 +8,7 @@ const bookingSchema = new Schema({
   _users: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
-// allows searching of date, _trainingSession & _attendees fields
+// indexing fields to allow searching of date, _trainingSession & _attendees fields
 bookingSchema.index({ date: 1, _trainingSession: 1, _users: 1 });
 
 const Booking = mongoose.model('Booking', bookingSchema);
