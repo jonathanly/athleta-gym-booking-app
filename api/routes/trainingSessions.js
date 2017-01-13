@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', function(req, res, next) {
     TrainingSession.find()
         .then(trainingSessions => {
+            console.log("Data sent: " + trainingSessions)
             res.json(trainingSessions);
         });
 });

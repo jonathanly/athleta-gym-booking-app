@@ -3,14 +3,15 @@ import 'whatwg-fetch'; // Polyfills window.fetch
 import fetchAPI from './api/fetchAPI'
 import { fetchCurrentUser } from './api/auth'
 import replaceItemWithID from './utils/replaceItemWithID'
-import Counter from './components/Counter'
 import SignInForm from './components/Auth/SignInForm'
+import TrainingSession from './components/TrainingSession/TrainingSession'
+
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       // We first check with the API if a user is signed in
       needsToCheckSignIn: true,
@@ -41,7 +42,7 @@ class App extends Component {
         console.error('Error loading counter api', error.message)
       })
   }
-  
+
   onChangeCount(id, change) {
     fetchAPI(`/counters/${ id }`, {
       method: 'PATCH',
@@ -77,34 +78,14 @@ class App extends Component {
   onUserSignedIn(user) {
     this.setState({ currentUser: user })
   }
-  
+
   render() {
     const { needsToCheckSignIn, currentUser, counters } = this.state
 
     return (
-      <main className="App">
-      {
-        needsToCheckSignIn ? (
-          <p>Loading…</p>
-        ) : currentUser ? (
-          currentUser.email
-        ) : (
-          <SignInForm onUserSignedIn={ this.onUserSignedIn } />
-        )
-      }
-      {
-        counters.map((counter, index) => {
-          return (
-            <Counter key={ index }
-              count={ counter.count }
-              onIncrement={ this.onChangeCount.bind(this, counter._id, 1) }
-              onDecrement={ this.onChangeCount.bind(this, counter._id, -1) }
-            />
-          )
-        })
-      }
-        <button onClick={ this.onAddCounter.bind(this) }>Add</button>
-      </main>
+      <div className="App">
+        <TrainingSession />
+      </div>
     );
   }
 }
