@@ -49,8 +49,8 @@ app.use(passport.session());
 
 // defining routes
 app.use('/', index);
-app.use('/auth', auth);
-//app.use('/users', users);
+// app.use('/auth', auth);
+// app.use('/users', users);
 app.use('/trainingSessions', trainingSessions);
 app.use('/bookings', bookings)
 

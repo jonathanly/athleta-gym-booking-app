@@ -23,19 +23,27 @@ router.get('/:id', function(req, res, next) {
 
 // Create new instance of TrainingSession
 router.post('/', function(req, res, next) {
-  TrainingSession.create(req.body)
-      .then(trainingSession => {
-          res.json(trainingSession);
-      })
-      .catch(err => {
-        res.json(err)
-    });
+  const { title, day, time, duration, capacity } = req.body;
+
+  TrainingSession.create({
+    title: title,
+    day: day,
+    time: time,
+    duration: duration,
+    capacity: capacity
+    })
+    .then(trainingSession => {
+      res.json(trainingSession);
+    })
+    .catch(err => {
+      res.json(err)
+  });
 });
 
 // Update single training session from database
 router.put('/:id', function(req, res, next) {
   const id = req.params.id;
-  let { title, day, time, duration, capacity } = req.body;
+  const { title, day, time, duration, capacity } = req.body;
 
   TrainingSession.findByIdAndUpdate(id)
     .then(trainingSession => {

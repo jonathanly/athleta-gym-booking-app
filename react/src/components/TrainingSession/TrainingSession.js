@@ -1,6 +1,7 @@
 import React from 'react';
 import fetchAPI from '../../api/fetchAPI';
-import TrainingSessionTable from './TrainingSessionTable'
+import TrainingSessionTable from './TrainingSessionTable';
+import TrainingSessionForm from './TrainingSessionForm';
 
 class TrainingSession extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class TrainingSession extends React.Component {
       <div>
         <h3>Group Training Sessions</h3>
         <TrainingSessionTable trainingSessions={this.state.trainingSessions} />
+        <TrainingSessionForm />
       </div>
     )
   };
