@@ -6,7 +6,7 @@ class TrainingSessionTable extends React.Component {
     const trainingSessionRows = this.props.trainingSessions.map(trainingSession => {
       return <TrainingSessionRow key={trainingSession._id}
         trainingSession={trainingSession}
-        onDelete={ () => this.props.deleteTrainingSession(trainingSession._id) }
+        onDelete={() => this.props.deleteTrainingSession(trainingSession._id)}
       />
     })
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchAPI, { deleteAPI } from '../../api/fetchAPI';
+import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
 
@@ -14,6 +14,7 @@ class TrainingSession extends React.Component {
 
     this.loadTrainingSessions = this.loadTrainingSessions.bind(this);
     this.deleteTrainingSession = this.deleteTrainingSession.bind(this);
+    this.addTrainingSession = this.addTrainingSession.bind(this);
   }
 
   loadTrainingSessions() {
@@ -26,6 +27,19 @@ class TrainingSession extends React.Component {
     .catch(error => {
       this.setState({ error })
     });
+  }
+
+  addTrainingSession(params) {
+    postAPI('/trainingSessions', params)
+    .then(response => {
+      const trainingSessions = this.state.trainingSessions.concat(response)
+      this.setState({
+        trainingSessions: trainingSessions
+      });
+    })
+    .catch(error => {
+      this.setState({ error })
+    })
   }
 
   deleteTrainingSession(id) {
@@ -44,13 +58,10 @@ class TrainingSession extends React.Component {
     });
   }
 
+  // Load training sessions before rendering
   componentWillMount() {
     this.loadTrainingSessions();
   }
-
-  // componentDidUpdate() {
-  //   this.onChange();
-  // }
 
   render() {
     const { error } = this.state;
@@ -58,12 +69,10 @@ class TrainingSession extends React.Component {
       <div>
         <h3>Group Training Sessions</h3>
 
-        { error &&
-          <p>{ error.message }</p>
-        }
+        { error && <p>{ error.message }</p> }
 
         <TrainingSessionTable trainingSessions={this.state.trainingSessions} deleteTrainingSession={ this.deleteTrainingSession } />
-        <TrainingSessionForm />
+        <TrainingSessionForm addTrainingSession={this.addTrainingSession} />
       </div>
     )
   };

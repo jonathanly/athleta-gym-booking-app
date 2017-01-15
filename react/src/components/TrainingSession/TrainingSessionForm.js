@@ -1,9 +1,8 @@
 import React from 'react';
-import { postAPI } from '../../api/fetchAPI';
 
 class TrainingSessionForm extends React.Component {
   createTrainingSession(e) {
-    const trainingSession = {
+    const newTrainingSession = {
       title: this.title.value,
       day: this.day.value,
       time: this.time.value,
@@ -13,15 +12,19 @@ class TrainingSessionForm extends React.Component {
 
     e.preventDefault();
     console.log('Adding training session...');
-    postAPI('/trainingSessions', trainingSession);
+    this.props.addTrainingSession(newTrainingSession);
     this.trainingSessionForm.reset();
   }
 
   render() {
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     const times = ["0600", "0830", "0930", "1000", "1730", "1800", "1830", "1900", "1930"]
-    const selectDay = days.map(day => { return <option>{day}</option> });
-    const selectTime = times.map(time => { return <option>{time}</option> });
+    const selectDay = days.map(day => (
+      <option key={day}>{day}</option>
+    ));
+    const selectTime = times.map(time => (
+      <option key={time}>{time}</option>
+    ));
 
     return (
       <form ref={(input) => this.trainingSessionForm = input} onSubmit={(e) => this.createTrainingSession(e)}>
