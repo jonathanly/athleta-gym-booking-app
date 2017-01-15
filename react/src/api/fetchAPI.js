@@ -43,3 +43,13 @@ export function patchAPI(path, bodyJSON) {
       body: JSON.stringify(bodyJSON)
   })
 }
+
+export function deleteAPI(path, bodyJSON) {
+  return fetchAPI(path, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyJSON)
+  })
+}

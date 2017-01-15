@@ -11,7 +11,7 @@ class TrainingSessionForm extends React.Component {
       capacity: this.capacity.value
     }
 
-    event.preventDefault();
+    e.preventDefault();
     console.log('Adding training session...');
     postAPI('/trainingSessions', trainingSession);
     this.trainingSessionForm.reset();
@@ -20,15 +20,17 @@ class TrainingSessionForm extends React.Component {
   render() {
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     const times = ["0600", "0830", "0930", "1000", "1730", "1800", "1830", "1900", "1930"]
+    const selectDay = days.map(day => { return <option>{day}</option> });
+    const selectTime = times.map(time => { return <option>{time}</option> });
 
     return (
       <form ref={(input) => this.trainingSessionForm = input} onSubmit={(e) => this.createTrainingSession(e)}>
         <input ref={(input) => this.title = input} type="text" placeholder="Title"/>
         <select ref={(input) => this.day = input}>
-          { days.map(day => { return <option>{day}</option> }) }
+          { selectDay }
         </select>
         <select ref={(input) => this.time = input}>
-          { times.map(time => { return <option>{time}</option> }) }
+          { selectTime }
         </select>
         <input ref={(input) => this.capacity = input} type="text" placeholder="Max Capacity"/>
         <input ref={(input) => this.duration = input} type="text" placeholder="Duration"/>

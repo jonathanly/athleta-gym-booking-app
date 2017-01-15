@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchAPI from '../../api/fetchAPI';
+import fetchAPI, { deleteAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
 
@@ -7,31 +7,62 @@ class TrainingSession extends React.Component {
   constructor(props) {
     super(props);
 
-    this.loadData = this.loadData.bind(this);
-
     this.state = {
-        trainingSessions: []
+        trainingSessions: [],
+        error: null
     };
+
+    this.loadTrainingSessions = this.loadTrainingSessions.bind(this);
+    this.deleteTrainingSession = this.deleteTrainingSession.bind(this);
   }
 
-  loadData() {
+  loadTrainingSessions() {
     fetchAPI('/trainingSessions')
     .then(response => {
       this.setState({
         trainingSessions: response
       });
     })
+    .catch(error => {
+      this.setState({ error })
+    });
+  }
+
+  deleteTrainingSession(id) {
+    console.log("Blasting data into smithereens...");
+    deleteAPI(`/trainingSessions/${id}`)
+    .then(response => {
+      // Filter out the deleted session
+      const trainingSessions = this.state.trainingSessions.filter((trainingSession) => (trainingSession._id !== id))
+      // Update the sessions in state, which will re-render
+      this.setState({
+        trainingSessions: trainingSessions
+      });
+    })
+    .catch(error => {
+      this.setState({ error })
+    });
   }
 
   componentWillMount() {
-    this.loadData();
+    this.loadTrainingSessions();
   }
 
+  // componentDidUpdate() {
+  //   this.onChange();
+  // }
+
   render() {
+    const { error } = this.state;
     return(
       <div>
         <h3>Group Training Sessions</h3>
-        <TrainingSessionTable trainingSessions={this.state.trainingSessions} />
+
+        { error &&
+          <p>{ error.message }</p>
+        }
+
+        <TrainingSessionTable trainingSessions={this.state.trainingSessions} deleteTrainingSession={ this.deleteTrainingSession } />
         <TrainingSessionForm />
       </div>
     )

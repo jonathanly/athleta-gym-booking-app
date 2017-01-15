@@ -4,7 +4,10 @@ import TrainingSessionRow from './TrainingSessionRow';
 class TrainingSessionTable extends React.Component {
   render() {
     const trainingSessionRows = this.props.trainingSessions.map(trainingSession => {
-      return <TrainingSessionRow key={trainingSession._id} trainingSession={trainingSession} />
+      return <TrainingSessionRow key={trainingSession._id}
+        trainingSession={trainingSession}
+        onDelete={ () => this.props.deleteTrainingSession(trainingSession._id) }
+      />
     })
 
     return(

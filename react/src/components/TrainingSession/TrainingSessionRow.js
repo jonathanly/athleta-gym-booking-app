@@ -1,8 +1,10 @@
 import React from 'react';
 
 class TrainingSessionRow extends React.Component {
+
+
   render() {
-    const { trainingSession } = this.props;
+    const { trainingSession, onDelete } = this.props;
 
     return (
       <tr>
@@ -13,6 +15,11 @@ class TrainingSessionRow extends React.Component {
         <td>{trainingSession.capacity}</td>
         <td>{trainingSession.dateAdded}</td>
         <td>{trainingSession.lastUpdated}</td>
+        <td>
+          <button onClick={(e) => onDelete() }>
+            Delete
+          </button>
+        </td>
       </tr>
     );
   }
