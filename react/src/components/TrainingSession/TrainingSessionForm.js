@@ -57,7 +57,9 @@ class TrainingSessionForm extends React.Component {
             </Col>
           </Row>
         </Form>
-        <Button variant="raised" color="primary" onClick={(e) => this.createTrainingSession(e)}>Submit</Button>
+        <Button variant="raised" color="primary" onClick={(e) => this.createTrainingSession(e)}>
+          <i className="fa fa-floppy-o" aria-hidden="true"/> Submit
+        </Button>
       </Panel>
     )
   }

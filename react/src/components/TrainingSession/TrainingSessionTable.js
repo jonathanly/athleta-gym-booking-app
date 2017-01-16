@@ -25,6 +25,8 @@ class TrainingSessionTable extends React.Component {
               <th style={style}>Capacity</th>
               <th style={style}>Date Added</th>
               <th style={style}>Last Updated</th>
+              <th style={style}></th>
+              <th style={style}></th>
             </tr>
           </thead>
           <tbody>
