@@ -3,6 +3,16 @@ import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
 
+// Form validation
+function createTrainingSession(values) {
+  // Invalid title
+  if (values.title.length === 0) {
+    return Promise.reject(new Error('Enter valid title'))
+  }
+
+  return postAPI('/trainingSessions', values)
+}
+
 class TrainingSession extends React.Component {
   constructor(props) {
     super(props);
@@ -30,11 +40,12 @@ class TrainingSession extends React.Component {
   }
 
   addTrainingSession(params) {
-    postAPI('/trainingSessions', params)
+    createTrainingSession(params)
     .then(response => {
       const trainingSessions = this.state.trainingSessions.concat(response)
       this.setState({
-        trainingSessions: trainingSessions
+        trainingSessions: trainingSessions,
+        error: null
       });
     })
     .catch(error => {

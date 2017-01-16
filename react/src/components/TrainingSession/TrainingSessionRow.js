@@ -16,6 +16,11 @@ class TrainingSessionRow extends React.Component {
         <td>{trainingSession.dateAdded}</td>
         <td>{trainingSession.lastUpdated}</td>
         <td>
+          <button>
+            Update
+          </button>
+        </td>
+        <td>
           <button onClick={(e) => onDelete() }>
             Delete
           </button>

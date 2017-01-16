@@ -5,11 +5,14 @@ const router = express.Router();
 
 // Get index of all training sessions
 router.get('/', function(req, res, next) {
-    TrainingSession.find()
-        .then(trainingSessions => {
-            console.log("Initiating data..")
-            res.json(trainingSessions);
-        });
+  TrainingSession.find()
+    .then(trainingSessions => {
+      console.log("Initiating data..")
+      res.json(trainingSessions);
+    })
+    .catch(err => {
+      res.json(err)
+    });
 });
 
 // Get single training session

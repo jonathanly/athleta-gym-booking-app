@@ -6,6 +6,7 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
+    "muicss": "^0.9.8",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "whatwg-fetch": "^2.0.1"
