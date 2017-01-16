@@ -1,27 +1,27 @@
 export default function fetchAPI(path, options) {
-    return fetch(process.env.REACT_APP_API_URL + path, options)
-      .then(response => {
-        // Successful
-        if (response.ok) {
-          // Decode JSON
+  return fetch(process.env.REACT_APP_API_URL + path, options)
+    .then(response => {
+      // Successful
+      if (response.ok) {
+        // Decode JSON
+        return response.json()
+      }
+      // Error
+      else {
+        // Client error
+        if (response.status >= 400 && response.status < 500) {
           return response.json()
+          .then(json => {
+            return Promise.reject(json)
+          })
         }
-        // Error
+        // Server error or redirect
         else {
-          // Client error
-          if (response.status >= 400 && response.status < 500) {
-            return response.json()
-            .then(json => {
-              return Promise.reject(json)
-            })
-          }
-          // Server error or redirect
-          else {
-            // Reject with entire response
-            return Promise.reject(response)
-          }
+          // Reject with entire response
+          return Promise.reject(response)
         }
-      })
+      }
+    })
 }
 
 export function postAPI(path, bodyJSON) {

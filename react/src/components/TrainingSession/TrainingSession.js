@@ -43,19 +43,21 @@ class TrainingSession extends React.Component {
   }
 
   deleteTrainingSession(id) {
-    console.log("Blasting data into smithereens...");
-    deleteAPI(`/trainingSessions/${id}`)
-    .then(response => {
-      // Filter out the deleted session
-      const trainingSessions = this.state.trainingSessions.filter((trainingSession) => (trainingSession._id !== id))
-      // Update the sessions in state, which will re-render
-      this.setState({
-        trainingSessions: trainingSessions
+    if (confirm('Are you sure you want to delete this session?')) {
+      console.log("Blasting data into smithereens...");
+      deleteAPI(`/trainingSessions/${id}`)
+      .then(response => {
+        // Filter out the deleted session
+        const trainingSessions = this.state.trainingSessions.filter((trainingSession) => (trainingSession._id !== id))
+        // Update the sessions in state, which will re-render
+        this.setState({
+          trainingSessions: trainingSessions
+        });
+      })
+      .catch(error => {
+        this.setState({ error })
       });
-    })
-    .catch(error => {
-      this.setState({ error })
-    });
+    }
   }
 
   // Load training sessions before rendering

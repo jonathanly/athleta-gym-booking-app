@@ -33,14 +33,6 @@ class App extends Component {
           needsToCheckSignIn: false
         })
       })
-
-    fetchAPI('/counters')
-      .then(counters => {
-        this.setState({ counters })
-      })
-      .catch(error => {
-        console.error('Error loading counter api', error.message)
-      })
   }
 
   onChangeCount(id, change) {

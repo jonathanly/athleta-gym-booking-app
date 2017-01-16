@@ -9,11 +9,12 @@ class TrainingSessionForm extends React.Component {
       duration: this.duration.value,
       capacity: this.capacity.value
     }
-
+  
     e.preventDefault();
     console.log('Adding training session...');
     this.props.addTrainingSession(newTrainingSession);
     this.trainingSessionForm.reset();
+
   }
 
   render() {
