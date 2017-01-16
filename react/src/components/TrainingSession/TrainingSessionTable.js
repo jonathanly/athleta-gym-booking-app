@@ -1,5 +1,8 @@
 import React from 'react';
 import TrainingSessionRow from './TrainingSessionRow';
+import { Panel } from 'muicss/react';
+
+let style = { textAlign: "center" };
 
 class TrainingSessionTable extends React.Component {
   render() {
@@ -11,22 +14,24 @@ class TrainingSessionTable extends React.Component {
     })
 
     return(
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Day</th>
-            <th>Time</th>
-            <th>Duration</th>
-            <th>Capacity</th>
-            <th>Date Added</th>
-            <th>Last Updated</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trainingSessionRows}
-        </tbody>
-      </table>
+      <Panel>
+        <table className="mui-table mui-table-bordered">
+          <thead>
+            <tr>
+              <th style={style}>Title</th>
+              <th style={style}>Day</th>
+              <th style={style}>Time</th>
+              <th style={style}>Duration</th>
+              <th style={style}>Capacity</th>
+              <th style={style}>Date Added</th>
+              <th style={style}>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trainingSessionRows}
+          </tbody>
+        </table>
+      </Panel>
     );
   }
 }
