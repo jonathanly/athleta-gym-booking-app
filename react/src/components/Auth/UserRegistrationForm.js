@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Input, Panel, Row, Col } from 'muicss/react';
+import { Button, Form, Input, Panel } from 'muicss/react';
 
 class UserRegistrationForm extends React.Component {
   render() {

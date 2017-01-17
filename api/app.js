@@ -8,9 +8,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const cors = require('cors');
 const passport = require('passport');
+const passportJWT = require('passport-jwt');
 
 const User = require('./models/User');
 
@@ -30,9 +30,8 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.SESSION_SECRET));
+//app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(cors({
   origin: '*'
 }));
@@ -41,9 +40,23 @@ app.use(cors({
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// Passport + JWT
+passport.use(new passportJWT.Strategy(
+  {
+    jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeader(),
+    secretOrKey: process.env.TOKEN_SECRET
+  },
+  (payload, done) => {
+    /*done(null, {
+      _id: payload.sub
+    })*/
+    User.findById(payload.sub, done);
+  }
+));
+
 // Express + Passport
 app.use(passport.initialize());
-app.use(passport.session());
 
 // defining routes
 app.use('/auth', auth);

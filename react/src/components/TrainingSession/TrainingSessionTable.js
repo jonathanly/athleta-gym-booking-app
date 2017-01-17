@@ -1,6 +1,6 @@
 import React from 'react';
 import TrainingSessionRow from './TrainingSessionRow';
-import { Panel, Col, Row } from 'muicss/react';
+import { Panel } from 'muicss/react';
 
 // Styling
 let s1 = { textAlign: "center" };

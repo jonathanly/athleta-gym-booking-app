@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Row } from 'muicss/react';
+import { Button } from 'muicss/react';
 
 class TrainingSessionRow extends React.Component {
   render() {
