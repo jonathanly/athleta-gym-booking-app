@@ -2,6 +2,7 @@ import React from 'react';
 import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
+import './TrainingSession.css'
 
 // Form validation
 function createTrainingSession(values) {

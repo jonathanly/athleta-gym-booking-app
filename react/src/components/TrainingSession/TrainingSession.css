@@ -1,0 +1,25 @@
+table#training-session-table {
+  color: orange;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+}
+
+table#training-session-table thead {
+  color: black;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+  table#training-session-table thead {
+    display: none;
+  }
+
+  table#training-session-table tbody tr {
+    /*display: block;*/
+  }
+
+  table#training-session-table tbody td:before {
+		content: attr(data-th);
+		font-weight: bold;
+	}
+}
