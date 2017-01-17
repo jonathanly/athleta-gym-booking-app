@@ -15,9 +15,7 @@ const passport = require('passport');
 const User = require('./models/User');
 
 // Routes
-const index = require('./routes/index');
 const auth = require('./routes/auth');
-const users = require('./routes/users');
 const trainingSessions = require('./routes/trainingSessions');
 const bookings = require('./routes/bookings');
 
@@ -48,9 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // defining routes
-app.use('/', index);
-// app.use('/auth', auth);
-// app.use('/users', users);
+app.use('/auth', auth);
 app.use('/trainingSessions', trainingSessions);
 app.use('/bookings', bookings)
 
