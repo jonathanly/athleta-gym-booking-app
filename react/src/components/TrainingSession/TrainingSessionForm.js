@@ -13,13 +13,15 @@ const selectTime = times.map(time => (
 
 class TrainingSessionForm extends React.Component {
   createTrainingSession(event) {
-    const form = document.forms.trainingSession
+    const form = event.target
+    const { elements } = form
+
     const newTrainingSession = {
-      title: form.title.value,
-      day: form.day.value,
-      time: form.time.value,
-      duration: form.duration.value,
-      capacity: form.capacity.value
+      title: elements.title.value,
+      day: elements.day.value,
+      time: elements.time.value,
+      duration: elements.duration.value,
+      capacity: elements.capacity.value
     }
 
     event.preventDefault();
@@ -33,7 +35,7 @@ class TrainingSessionForm extends React.Component {
       <div>
         <h3>Add Training Session</h3>
         <Panel>
-          <Form inline={true} name="trainingSession">
+          <Form inline={true} onSubmit={(e) => this.createTrainingSession(e)}>
             <Row>
               <Col md="4" xs="12">
                 <Input label="Class Name" name="title" required={true} />
@@ -57,10 +59,10 @@ class TrainingSessionForm extends React.Component {
                 <Input label="Duration" name="duration" />
               </Col>
             </Row>
+            <Button variant="raised" type="submit" color="primary">
+              <i className="fa fa-floppy-o" aria-hidden="true"/> Submit
+            </Button>
           </Form>
-          <Button variant="raised" color="primary" onClick={(e) => this.createTrainingSession(e)}>
-            <i className="fa fa-floppy-o" aria-hidden="true"/> Submit
-          </Button>
         </Panel>
       </div>
     )

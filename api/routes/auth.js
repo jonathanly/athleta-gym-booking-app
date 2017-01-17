@@ -6,8 +6,8 @@ const requireAuthorizedUser = require('../middleware/requireAuthorizedUser');
 
 const router = express.Router();
 
-function whitelistUser({ email }) {
-    return { email };
+function whitelistUser({ email, firstName, lastName, contactNumber }) {
+    return { email, firstName, lastName, contactNumber };
 }
 
 function makeTokenForUser(user) {
@@ -44,13 +44,13 @@ router.get('/',
 
 // Sign up
 router.post('/register', function(req, res, next) {
-  const { email, password } = req.body;
+  const { email, password, firstName, lastName, contactNumber } = req.body;
   User.register(
-      new User({ email: email }),
+      new User({ email, firstName, lastName, contactNumber }),
       password,
-      (error, user) => {
-          if (error) {
-              next(error);
+      (err, user) => {
+          if (err) {
+              next(err);
           }
           else {
               const token = makeTokenForUser(user)
