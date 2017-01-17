@@ -6,8 +6,8 @@ const requireAuthorizedUser = require('../middleware/requireAuthorizedUser');
 
 const router = express.Router();
 
-function whitelistUser({ email, firstName, lastName, contactNumber }) {
-    return { email, firstName, lastName, contactNumber };
+function whitelistUser({ email, firstName, lastName, contactNumber, _id }) {
+    return { email, firstName, lastName, contactNumber, _id };
 }
 
 function makeTokenForUser(user) {
@@ -58,6 +58,18 @@ router.post('/register', function(req, res, next) {
           }
       }
   );
+});
+
+// Delete
+router.delete('/:id', requireAuthorizedUser, function(req, res, next) {
+  const { id } = req.params;
+  User.findByIdAndRemove(id)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => {
+        res.json(err)
+    });
 });
 
 module.exports = router;
