@@ -2,7 +2,9 @@ import React from 'react';
 import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
-import './TrainingSession.css'
+import './TrainingSession.css';
+
+import { Link, Match } from 'react-router';
 
 // Form validation
 function createTrainingSession(values) {
@@ -78,15 +80,26 @@ class TrainingSession extends React.Component {
   }
 
   render() {
+    const { location, pattern, pathname, isExact } = this.props
     const { error } = this.state;
-    return(
+    return (
       <div>
         <h3>Group Training Sessions</h3>
 
+        <ul>
+          <Link to='/trainingSessions'><li>View All</li></Link>
+          <Link to={`${pathname}/add`}><li>Add Training Session</li></Link>
+        </ul>
+
         { error && <p>{ error.message }</p> }
 
-        <TrainingSessionTable trainingSessions={this.state.trainingSessions} deleteTrainingSession={ this.deleteTrainingSession } />
-        <TrainingSessionForm addTrainingSession={this.addTrainingSession} />
+        <Match exactly pattern='/trainingSessions'
+          render={() => <TrainingSessionTable trainingSessions={this.state.trainingSessions}
+          deleteTrainingSession={this.deleteTrainingSession} />}
+        />
+        <Match pattern='/trainingSessions/add'
+          render={() => <TrainingSessionForm addTrainingSession={this.addTrainingSession} />}
+        />
       </div>
     )
   };
