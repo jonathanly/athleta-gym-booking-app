@@ -2,9 +2,10 @@ import React from 'react';
 import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
+import NotFound from '../Shared/NotFound';
 import './TrainingSession.css';
 
-import { Link, Match } from 'react-router';
+import { Link, Match, Miss } from 'react-router';
 
 // Form validation
 function createTrainingSession(values) {
@@ -97,9 +98,10 @@ class TrainingSession extends React.Component {
           render={() => <TrainingSessionTable trainingSessions={this.state.trainingSessions}
           deleteTrainingSession={this.deleteTrainingSession} />}
         />
-        <Match pattern='/trainingSessions/add'
+        <Match exactly pattern='/trainingSessions/add'
           render={() => <TrainingSessionForm addTrainingSession={this.addTrainingSession} />}
         />
+        <Miss component={NotFound} />
       </div>
     )
   };

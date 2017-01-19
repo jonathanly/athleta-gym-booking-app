@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchAPI from '../../api/fetchAPI';
+import fetchAPI, { postAPI } from '../../api/fetchAPI';
 import { Panel, Form, Button, Select, Option } from 'muicss/react';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
@@ -17,6 +17,7 @@ class BookingForm extends React.Component {
     }
 
     this.onTitleSelect = this.onTitleSelect.bind(this);
+    this.createNewBooking = this.createNewBooking.bind(this);
   }
 
   onTitleSelect(e) {
@@ -32,9 +33,32 @@ class BookingForm extends React.Component {
         let filteredSessions = sessions.filter(result => (selectedTitle === result.title))
         this.setState({ filteredSessions: filteredSessions })
       })
-      .catch(err => {
-        this.setState({ error: err })
+      .catch(error => {
+        this.setState({ error })
       });
+  }
+
+  createNewBooking(e) {
+    e.preventDefault();
+    console.log(`User id: ${this.props.currentUser.user}`)
+    const form = e.target
+    const { elements } = form
+
+    const newBooking = {
+      date: elements.date.value,
+      _trainingSession: elements.classId.value,
+      _users: this.props.currentUser.user
+    }
+
+    console.log(newBooking);
+    postAPI('/bookings', newBooking)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+
   }
 
   render() {
@@ -49,7 +73,7 @@ class BookingForm extends React.Component {
     return (
       <Panel>
         <h1>Booking Form</h1>
-        <Form name='booking'>
+        <Form name='booking' onSubmit={this.createNewBooking}>
           <Select name="title" onChange={this.onTitleSelect}>
             <Option value="" label="" />
             {sessionTitleOptions}
@@ -58,7 +82,7 @@ class BookingForm extends React.Component {
             <Option value="" label="" />
             {filteredSessionsOptions}
           </Select>
-          <SingleDatePicker id="date_input"
+          <SingleDatePicker name="date" id="date"
             date={this.state.date}
             focused={this.state.focused}
             numberOfMonths={1}

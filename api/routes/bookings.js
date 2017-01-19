@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
   //   .then(count => { console.log('bookings', count) })
 
   Booking.find(conditions)
-    .populate('_trainingSession')
+    .populate('_trainingSession _users')
     .then(bookings => {
       res.json(bookings);
     })
@@ -46,13 +46,19 @@ router.get('/:id', function(req, res, next) {
 
 // Create: create single
 router.post('/', function(req, res, next) {
-  Booking.create(req.body)
-      .then(booking => {
-          res.json(booking);
-      })
-      .catch(err => {
-        res.json({ message: err.message })
-      });
+  const { date, _trainingSession, _users } = req.body
+  Booking.findOneAndUpdate({
+    date: date,
+    _trainingSession: _trainingSession
+    },
+    { $push: { _users: _users }},
+    { upsert: true, new: true })
+    .then(booking => {
+      res.json(booking);
+    })
+    .catch(err => {
+      res.json({ message: err.message })
+    });
 });
 //
 // // Update: update single

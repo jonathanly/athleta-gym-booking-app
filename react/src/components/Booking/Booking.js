@@ -16,10 +16,8 @@ class Booking extends React.Component {
 
   getTrainingSessions() {
     fetchAPI('/trainingSessions')
-    .then(res => {
-      this.setState({
-        trainingSessions: res
-      });
+    .then(trainingSessions => {
+      this.setState({ trainingSessions });
     })
     .catch(err => {
       this.setState({ error: err })
