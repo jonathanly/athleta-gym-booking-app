@@ -74,11 +74,11 @@ class BookingForm extends React.Component {
       <Panel>
         <h1>Booking Form</h1>
         <Form name='booking' onSubmit={this.createNewBooking}>
-          <Select name="title" onChange={this.onTitleSelect}>
+          <Select name="title" label="Class" floatingLabel={true} type="text" required={true} onChange={this.onTitleSelect}>
             <Option value="" label="" />
             {sessionTitleOptions}
           </Select>
-          <Select name="classId">
+          <Select name="classId" label="Day - Time" floatingLabel={true} type="text" required={true}>
             <Option value="" label="" />
             {filteredSessionsOptions}
           </Select>
@@ -86,6 +86,7 @@ class BookingForm extends React.Component {
             date={this.state.date}
             focused={this.state.focused}
             numberOfMonths={1}
+            required={true}
             onDateChange={(date) => { this.setState({ date }); }}
             onFocusChange={({ focused }) => { this.setState({ focused }); }}
           />

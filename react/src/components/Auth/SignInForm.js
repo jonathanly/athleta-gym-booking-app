@@ -2,22 +2,19 @@ import React, { PropTypes } from 'react';
 import { signIn } from '../../api/auth';
 import { Form, Input, Button } from 'muicss/react';
 
-// Validate passed email and password, and sign in
 function validatedSignIn({ email, password }) {
   // Trim to remove spaces
   email = email.trim()
   password = password.trim()
 
-  // Check for missing email
   if (email.length === 0) {
     return Promise.reject(new Error('Please enter an email'))
   }
-  // Check for missing password
+
   else if (password.length === 0) {
     return Promise.reject(new Error('Please enter a password'))
   }
 
-  // All validated, so sign in
   return signIn({ email, password })
 }
 
@@ -86,8 +83,8 @@ class SignInForm extends React.PureComponent {
         { error && <p style={styles.errorMessage}>{error.message}</p> }
 
         <Form onSubmit={this.onSignIn} style={styles.form}>
-          <Input hint="Email" name="email" style={styles.label}/>
-          <Input hint="Password" name="password" style={styles.label} />
+          <Input hint="Email" name="email" type="email" required={true} style={styles.label}/>
+          <Input hint="Password" name="password" type="password" required={true} style={styles.label} />
           <Button variant="raised" color="dark" type='submit' onSubmit={this.onSignIn}>Sign In</Button>
         </Form>
       </div>

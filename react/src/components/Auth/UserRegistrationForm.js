@@ -47,14 +47,14 @@ class UserRegistrationForm extends React.Component {
         <h3>New User Registration</h3>
         <Panel>
           <Form name="newUserForm" onSubmit={this.onSignUp}>
-            <Input label="Email" name="email"/>
-            <Input label="Password" name="password"/>
-            <Input label="Password Confirmation" name="passwordConfirmation"/>
-            <Input label="First Name" name="firstName"/>
-            <Input label="Last Name" name="lastName"/>
-            <Input label="Contact Number" name="contactNumber"/>
+            <Input label="Email" name="email" type="email" required={true} />
+            <Input label="Password" name="password" type="password" required={true} />
+            <Input label="Password Confirmation" name="passwordConfirmation" type="password" required={true} />
+            <Input label="First Name" name="firstName" type="text" required={true} />
+            <Input label="Last Name" name="lastName" type="text" required={true}/>
+            <Input label="Contact Number" name="contactNumber" type="tel" required={true} />
             <Button variant="raised" color="primary" type="submit">
-              <i className="fa fa-floppy-o" aria-hidden="true"/> Create
+              <i className="fa fa-floppy-o" aria-hidden="true" /> Create
             </Button>
           </Form>
         </Panel>
