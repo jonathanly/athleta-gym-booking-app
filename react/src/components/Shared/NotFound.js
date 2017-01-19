@@ -15,10 +15,10 @@ const NotFound = (props) => {
         Wow how skill
       </h3>
       <h3 style={{fontFamily: 'Comic Sans MS', color: '#ff00ff'}}>
-        Such programming
+        Much programming
       </h3>
       <h3 style={{fontFamily: 'Comic Sans MS', color: '#ff0000'}}>
-        Much intelligent
+        Such intelligent
       </h3>
       <h3>\_(ツ)_/¯</h3>
     </div>

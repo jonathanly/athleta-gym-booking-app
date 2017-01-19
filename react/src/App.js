@@ -40,21 +40,22 @@ class App extends React.Component {
     if (isLoggedIn) {
       logInControl = <li onClick={this.onSignOut}>Log Out</li>;
     } else {
-      logInControl = <li><Link to='/signin'>Log In</Link></li>;
+      logInControl = <li><Link to='/login'>Log In</Link></li>;
     };
 
     return (
       <div className="App">
+
         <ul className="main-navigation">
           <li><Link to='/'>Home</Link></li>
-          <li><Link to="/register">Sign Up</Link></li>
+          <li><Link to="/signup">Sign Up</Link></li>
           <li><Link to="/trainingSessions">Training Sessions</Link></li>
           { logInControl }
         </ul>
 
-        <Match pattern='/' exactly component={Home} />
-        <Match pattern='/register' render={() => <UserRegistrationForm onUserSignedIn={this.onUserSignedIn} />} />
-        <Match pattern='/signin' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
+        <Match exactly pattern='/' component={Home} />
+        <Match exactly pattern='/signup' render={() => <UserRegistrationForm onUserSignedIn={this.onUserSignedIn} />} />
+        <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
         <Match pattern='/trainingSessions' component={TrainingSession} />
         <Miss component={NotFound} />
       </div>

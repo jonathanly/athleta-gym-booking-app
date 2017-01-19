@@ -87,7 +87,7 @@ class TrainingSession extends React.Component {
         <h3>Group Training Sessions</h3>
 
         <ul>
-          <Link to='/trainingSessions'><li>View All</li></Link>
+          <Link to={`${pathname}`}><li>View All</li></Link>
           <Link to={`${pathname}/add`}><li>Add Training Session</li></Link>
         </ul>
 
