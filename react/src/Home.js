@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'muicss/react';
-import { Link, Match, Miss } from 'react-router';
+import { Link } from 'react-router';
 
 class Home extends React.Component {
   render() {

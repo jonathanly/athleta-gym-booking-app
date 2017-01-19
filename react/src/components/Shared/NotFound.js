@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 
 const styles = {
@@ -10,7 +11,7 @@ const NotFound = (props) => {
       <h2 style={{fontFamily: 'Comic Sans MS'}}>
         <strong>Page cannot be found</strong>
       </h2>
-      <img src={require('../../images/doge.jpg')} style={styles.img}/>
+      <img src={require('../../images/doge.jpg')} alt="Doge was here" style={styles.img}/>
       <h3 style={{fontFamily: 'Comic Sans MS', color: '#00ff00'}}>
         Wow how skill
       </h3>
@@ -24,6 +25,5 @@ const NotFound = (props) => {
     </div>
   )
 }
-
 
 export default NotFound;

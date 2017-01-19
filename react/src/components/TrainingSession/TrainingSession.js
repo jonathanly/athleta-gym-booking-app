@@ -21,8 +21,8 @@ class TrainingSession extends React.Component {
     super(props);
 
     this.state = {
-        trainingSessions: [],
-        error: null
+      trainingSessions: [],
+      error: null
     };
 
     this.loadTrainingSessions = this.loadTrainingSessions.bind(this);

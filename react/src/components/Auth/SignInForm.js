@@ -88,7 +88,7 @@ class SignInForm extends React.PureComponent {
         <Form onSubmit={this.onSignIn} style={styles.form}>
           <Input hint="Email" name="email" style={styles.label}/>
           <Input hint="Password" name="password" style={styles.label} />
-          <Button variant="raised" color="dark" type='submit' onSubmit={ this.onSignIn }>Sign In</Button>
+          <Button variant="raised" color="dark" type='submit' onSubmit={this.onSignIn}>Sign In</Button>
         </Form>
       </div>
     )

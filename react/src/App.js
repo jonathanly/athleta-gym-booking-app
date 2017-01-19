@@ -6,6 +6,7 @@ import TrainingSession from './components/TrainingSession/TrainingSession';
 import SignInForm from './components/Auth/SignInForm';
 import Home from './Home';
 import NotFound from './components/Shared/NotFound';
+import Booking from './components/Booking/Booking';
 
 import { Link, Match, Miss } from 'react-router';
 
@@ -23,13 +24,14 @@ class App extends React.Component {
 
     this.onUserSignedIn = this.onUserSignedIn.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
+    // this.getCurrentUser = this.getCurrentUser.bind(this);
   }
 
   onUserSignedIn(user) {
     this.setState({ currentUser: user })
   }
 
-  onSignOut(){
+  onSignOut() {
     this.setState({ currentUser: null })
     signOut();
   }
@@ -50,6 +52,7 @@ class App extends React.Component {
           <li><Link to='/'>Home</Link></li>
           <li><Link to="/signup">Sign Up</Link></li>
           <li><Link to="/trainingSessions">Training Sessions</Link></li>
+          <li><Link to="/bookings">Book</Link></li>
           { logInControl }
         </ul>
 
@@ -57,6 +60,7 @@ class App extends React.Component {
         <Match exactly pattern='/signup' render={() => <UserRegistrationForm onUserSignedIn={this.onUserSignedIn} />} />
         <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
         <Match pattern='/trainingSessions' component={TrainingSession} />
+        <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
         <Miss component={NotFound} />
       </div>
     );

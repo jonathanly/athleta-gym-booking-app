@@ -1,0 +1,6 @@
+/* react-dates SingleDatePicker fix */
+
+.CalendarMonthGrid--horizontal {
+  position: absolute;
+  left: 0 !important;
+  width: auto !important; }
