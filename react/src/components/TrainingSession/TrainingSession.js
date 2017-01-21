@@ -2,20 +2,12 @@ import React from 'react';
 import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
+import EditTrainingSession from './EditTrainingSession';
 import NotFound from '../Shared/NotFound';
+import { validateTrainingSession } from './helpers/validateTrainingSession';
 import './TrainingSession.css';
 
 import { Link, Match, Miss } from 'react-router';
-
-// Form validation
-function createTrainingSession(values) {
-  // Invalid title
-  if (values.title.length === 0) {
-    return Promise.reject(new Error('Enter valid title'))
-  }
-
-  return postAPI('/trainingSessions', values)
-}
 
 class TrainingSession extends React.Component {
   constructor(props) {
@@ -28,7 +20,7 @@ class TrainingSession extends React.Component {
 
     this.loadTrainingSessions = this.loadTrainingSessions.bind(this);
     this.deleteTrainingSession = this.deleteTrainingSession.bind(this);
-    this.addTrainingSession = this.addTrainingSession.bind(this);
+    this.createTrainingSession = this.createTrainingSession.bind(this);
   }
 
   loadTrainingSessions() {
@@ -43,8 +35,8 @@ class TrainingSession extends React.Component {
     });
   }
 
-  addTrainingSession(params) {
-    createTrainingSession(params)
+  createTrainingSession(values) {
+    validateTrainingSession(values)
     .then(response => {
       const trainingSessions = this.state.trainingSessions.concat(response)
       this.setState({
@@ -75,8 +67,12 @@ class TrainingSession extends React.Component {
     }
   }
 
+  editTrainingSession(id, values) {
+    console.log("Still in progress")
+  }
+
   // Load training sessions before rendering
-  componentWillMount() {
+  componentDidMount() {
     this.loadTrainingSessions();
   }
 
@@ -88,7 +84,7 @@ class TrainingSession extends React.Component {
         <h3>Group Training Sessions</h3>
 
         <ul>
-          <Link to={`${pathname}`}><li>View All</li></Link>
+          <Link to={pathname}><li>View All</li></Link>
           <Link to={`${pathname}/add`}><li>Add Training Session</li></Link>
         </ul>
 
@@ -99,12 +95,17 @@ class TrainingSession extends React.Component {
           deleteTrainingSession={this.deleteTrainingSession} />}
         />
         <Match exactly pattern='/trainingSessions/add'
-          render={() => <TrainingSessionForm addTrainingSession={this.addTrainingSession} />}
+          render={() => <TrainingSessionForm handleSubmit={this.createTrainingSession} />}
         />
-        <Miss component={NotFound} />
       </div>
     )
   };
 }
 
 export default TrainingSession;
+
+
+// Edit route to be determined
+// <Match pattern='/trainingSessions/:id'
+//   render={({ params }) => <EditTrainingSession id={ params.id } editTrainingSession={ this.editTrainingSession } />}
+// />

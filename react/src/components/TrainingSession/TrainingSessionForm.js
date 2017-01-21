@@ -12,33 +12,38 @@ const selectTime = times.map(time => (
 ));
 
 class TrainingSessionForm extends React.Component {
-  createTrainingSession(event) {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
     const form = event.target
     const { elements } = form
 
-    const newTrainingSession = {
+    const trainingSession = {
       title: elements.title.value,
       day: elements.day.value,
       time: elements.time.value,
       duration: elements.duration.value,
       capacity: elements.capacity.value
     }
-
     event.preventDefault();
-    console.log('Adding training session...');
-    this.props.addTrainingSession(newTrainingSession);
+    this.props.handleSubmit(trainingSession);
     form.reset();
   }
+
+  // check form validation
 
   render() {
     return (
       <div>
-        <h3>Add Training Session</h3>
+        <h1>{this.props.title}</h1>
         <Panel>
-          <Form inline={true} onSubmit={(e) => this.createTrainingSession(e)}>
+          <Form inline={true} onSubmit={this.handleSubmit}>
             <Row>
               <Col md="4" xs="12">
-                <Input label="Class Name" name="title" required={true} />
+                <Input label="Class Name" name="title" type="text" required={true} />
               </Col>
               <Col md="2" xs="6">
                 <Select label="Day" name="day" required={true}>
@@ -53,10 +58,10 @@ class TrainingSessionForm extends React.Component {
                 </Select>
               </Col>
               <Col md="2" xs="6">
-                <Input label="Max Size" name="capacity" />
+                <Input label="Max Size" name="capacity" type="tel" required={true} />
               </Col>
               <Col md="2" xs="6">
-                <Input label="Duration" name="duration" />
+                <Input label="Duration" name="duration" required={true} />
               </Col>
             </Row>
             <Button variant="raised" type="submit" color="primary">
@@ -70,3 +75,22 @@ class TrainingSessionForm extends React.Component {
 }
 
 export default TrainingSessionForm;
+
+//
+// createTrainingSession(event) {
+//   const form = event.target
+//   const { elements } = form
+//
+//   const newTrainingSession = {
+//     title: elements.title.value,
+//     day: elements.day.value,
+//     time: elements.time.value,
+//     duration: elements.duration.value,
+//     capacity: elements.capacity.value
+//   }
+//
+//   event.preventDefault();
+//   console.log('Adding training session...');
+//   this.props.addTrainingSession(newTrainingSession);
+//   form.reset();
+// }

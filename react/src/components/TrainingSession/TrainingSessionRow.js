@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'muicss/react';
+import { Link } from 'react-router'
 
 class TrainingSessionRow extends React.Component {
   render() {
@@ -15,9 +16,11 @@ class TrainingSessionRow extends React.Component {
         <td>{trainingSession.dateAdded}</td>
         <td>{trainingSession.lastUpdated}</td>
         <td>
-          <Button color="primary">
-            <i className="fa fa-pencil" aria-hidden="true"/>
-          </Button>
+          <Link to={`/trainingSessions/${trainingSession._id}`}>
+            <Button color="primary">
+              <i className="fa fa-pencil" aria-hidden="true"/>
+            </Button>
+          </Link>
         </td>
         <td>
           <Button color="danger" onClick={(e) => onDelete()}>
