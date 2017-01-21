@@ -2,9 +2,22 @@ import React from 'react';
 import fetchAPI, { postAPI } from '../../api/fetchAPI';
 import { Panel, Form, Button, Select, Option } from 'muicss/react';
 import { SingleDatePicker } from 'react-dates';
+import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import './BookingForm.css';
-var _ = require('lodash/array');
+import _ from 'lodash';
+
+function weekdayIndexForSessionDay(day) {
+  switch (day) {
+    case "Sun": return 0;
+    case "Mon": return 1;
+    case "Tue": return 2;
+    case "Wed": return 3;
+    case "Thu": return 4;
+    case "Fri": return 5;
+    case "Sat": return 6;
+  }
+}
 
 class BookingForm extends React.Component {
   constructor(props) {
@@ -20,13 +33,13 @@ class BookingForm extends React.Component {
     this.createNewBooking = this.createNewBooking.bind(this);
   }
 
-  onTitleSelect(e) {
-    const select = e.target
+  onTitleSelect(event) {
+    const select = event.target
     const { value } = select
     let selectedTitle = value
     this.setState({ selectedTitle })
 
-    e.preventDefault();
+    event.preventDefault();
     console.log(selectedTitle);
     fetchAPI('/trainingSessions')
       .then(sessions => {
@@ -38,10 +51,10 @@ class BookingForm extends React.Component {
       });
   }
 
-  createNewBooking(e) {
-    e.preventDefault();
+  createNewBooking(event) {
+    event.preventDefault();
     console.log(`User id: ${this.props.currentUser.user}`)
-    const form = e.target
+    const form = event.target
     const { elements } = form
 
     const newBooking = {
@@ -66,27 +79,40 @@ class BookingForm extends React.Component {
     const sessionTitles = _.uniq(this.props.trainingSessions.map(session => { return session.title }));
     const sessionTitleOptions = sessionTitles.map(title => { return <Option key={title} value={title} label={title} /> });
     // onTitleSelect returns training session day and time corresponding to selected training session title
-    let filteredSessionsOptions = this.state.filteredSessions.map(session => {
-      return <Option key={session._id} value={session._id} label={`${session.day} ${session.time}`} />
+    let filteredSessionsDay = this.state.filteredSessions.map(session => {
+      return <Option key={session._id} value={session.day} label={`${session.day}`} />
     });
+    // Selected time returns trainingSession_.id to form 
+    let filteredSessionsTime = this.state.filteredSessions.map(session => {
+      return <Option key={session._id} value={session._id} label={`${session.time}`} />
+    });
+
+    const availableWeekdays = _.uniq(this.state.filteredSessions.map(session => (
+      weekdayIndexForSessionDay(session.day)
+    )))
 
     return (
       <Panel>
         <h1>Booking Form</h1>
         <Form name='booking' onSubmit={this.createNewBooking}>
-          <Select name="title" label="Class" floatingLabel={true} type="text" required={true} onChange={this.onTitleSelect}>
+          <Select name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>
             <Option value="" label="" />
             {sessionTitleOptions}
           </Select>
-          <Select name="classId" label="Day - Time" floatingLabel={true} type="text" required={true}>
+          <Select name="day" label="Day" type="text" required={true}>
             <Option value="" label="" />
-            {filteredSessionsOptions}
+            {filteredSessionsDay}
+          </Select>
+          <Select name="classId" label="Time" type="text" required={true}>
+            <Option value="" label="" />
+            {filteredSessionsTime}
           </Select>
           <SingleDatePicker name="date" id="date"
             date={this.state.date}
             focused={this.state.focused}
             numberOfMonths={1}
             required={true}
+            isDayBlocked={ (date) => !_.includes(availableWeekdays, moment(date).day()) }
             onDateChange={(date) => { this.setState({ date }); }}
             onFocusChange={({ focused }) => { this.setState({ focused }); }}
           />
@@ -101,10 +127,3 @@ class BookingForm extends React.Component {
 }
 
 export default BookingForm;
-
-// const options = this.props.trainingSessions.map(trainingSession => {
-//   return <Option key={trainingSession._id}
-//     value={trainingSession._id}
-//     label={`${trainingSession.title} ${trainingSession.day} ${trainingSession.time}`}
-//   />
-// });
