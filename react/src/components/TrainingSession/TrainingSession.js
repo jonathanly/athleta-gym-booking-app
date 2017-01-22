@@ -1,8 +1,7 @@
 import React from 'react';
-import fetchAPI, { deleteAPI, postAPI } from '../../api/fetchAPI';
+import fetchAPI, { deleteAPI, patchAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
-import EditTrainingSession from './EditTrainingSession';
 import NotFound from '../Shared/NotFound';
 import { validateTrainingSession } from './helpers/validateTrainingSession';
 import './TrainingSession.css';
@@ -21,6 +20,7 @@ class TrainingSession extends React.Component {
     this.loadTrainingSessions = this.loadTrainingSessions.bind(this);
     this.deleteTrainingSession = this.deleteTrainingSession.bind(this);
     this.createTrainingSession = this.createTrainingSession.bind(this);
+    this.editTrainingSession = this.editTrainingSession.bind(this);
   }
 
   loadTrainingSessions() {
@@ -67,8 +67,18 @@ class TrainingSession extends React.Component {
     }
   }
 
-  editTrainingSession(id, values) {
-    console.log("Still in progress")
+  editTrainingSession(values) {
+    console.log(values.trainingSessionId);
+    // console.log(values); // values are not being passed to function
+    patchAPI(`/trainingSessions/${values.trainingSessionId}`, values)
+      .then(response => {
+        console.log(response)
+        // Reload TrainingSessionTable
+        this.loadTrainingSessions();
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
   }
 
   // Load training sessions before rendering
@@ -84,18 +94,20 @@ class TrainingSession extends React.Component {
         <h3>Group Training Sessions</h3>
 
         <ul>
-          <Link to={pathname}><li>View All</li></Link>
           <Link to={`${pathname}/add`}><li>Add Training Session</li></Link>
         </ul>
 
         { error && <p>{ error.message }</p> }
 
-        <Match exactly pattern='/trainingSessions'
+        <Match exactly pattern={pathname}
           render={() => <TrainingSessionTable trainingSessions={this.state.trainingSessions}
           deleteTrainingSession={this.deleteTrainingSession} />}
         />
-        <Match exactly pattern='/trainingSessions/add'
-          render={() => <TrainingSessionForm handleSubmit={this.createTrainingSession} />}
+        <Match exactly pattern={`${pathname}/add`}
+          render={() => <TrainingSessionForm handleSubmit={this.createTrainingSession} title="Add Training Session" />}
+        />
+        <Match exactly pattern={`${pathname}/edit/:id`}
+          render={({ params }) => <TrainingSessionForm trainingSessionId={ params.id } handleSubmit={ this.editTrainingSession } />}
         />
       </div>
     )
@@ -103,9 +115,3 @@ class TrainingSession extends React.Component {
 }
 
 export default TrainingSession;
-
-
-// Edit route to be determined
-// <Match pattern='/trainingSessions/:id'
-//   render={({ params }) => <EditTrainingSession id={ params.id } editTrainingSession={ this.editTrainingSession } />}
-// />

@@ -16,7 +16,7 @@ class TrainingSessionRow extends React.Component {
         <td>{trainingSession.dateAdded}</td>
         <td>{trainingSession.lastUpdated}</td>
         <td>
-          <Link to={`/trainingSessions/${trainingSession._id}`}>
+          <Link to={`/trainingSessions/edit/${trainingSession._id}`}>
             <Button color="primary">
               <i className="fa fa-pencil" aria-hidden="true"/>
             </Button>
