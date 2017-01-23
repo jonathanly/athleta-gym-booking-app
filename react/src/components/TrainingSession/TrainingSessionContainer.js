@@ -2,6 +2,7 @@ import React from 'react';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
 import AddTrainingSession from './AddTrainingSession';
+import EditTrainingSession from './EditTrainingSession';
 import { validateTrainingSession } from './helpers/validateTrainingSession';
 import './TrainingSession.css';
 
@@ -68,6 +69,9 @@ class TrainingSession extends React.Component {
         />
         <Match exactly pattern={`${pathname}/add`}
           render={() => <AddTrainingSession createTrainingSession={this.createTrainingSession} />}
+        />
+        <Match exactly pattern={`${pathname}/edit/:id`}
+          render={({ params }) => <EditTrainingSession trainingSessionId={ params.id } />}
         />
       </div>
     )

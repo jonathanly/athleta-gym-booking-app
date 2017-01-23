@@ -47,7 +47,7 @@ router.post('/', function(req, res, next) {
 router.patch('/:id', function(req, res, next) {
   const id = req.params.id;
   console.log("req.params --", req.params)
-  console.log("req.body--", req.body)
+  console.log("req.body --", req.body)
   const { title, day, time, duration, capacity } = req.body;
 
   TrainingSession.findByIdAndUpdate(id)
