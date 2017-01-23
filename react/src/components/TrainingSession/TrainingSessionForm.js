@@ -1,5 +1,4 @@
 import React from 'react';
-import fetchAPI from '../../api/fetchAPI';
 import { Button, Form, Input, Select, Option, Panel, Row, Col } from 'muicss/react';
 
 // Pre-rendered elements

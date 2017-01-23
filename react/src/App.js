@@ -2,7 +2,7 @@ import React from 'react';
 import 'whatwg-fetch'; // Polyfills window.fetch
 import { signOut } from './api/auth';
 import UserRegistrationForm from './components/Auth/UserRegistrationForm';
-import TrainingSession from './components/TrainingSession/TrainingSession';
+import TrainingSessionContainer from './components/TrainingSession/TrainingSessionContainer';
 import SignInForm from './components/Auth/SignInForm';
 import Home from './Home';
 import NotFound from './components/Shared/NotFound';
@@ -59,7 +59,7 @@ class App extends React.Component {
         <Match exactly pattern='/' component={Home} />
         <Match exactly pattern='/signup' render={() => <UserRegistrationForm onUserSignedIn={this.onUserSignedIn} />} />
         <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
-        <Match pattern='/trainingSessions' component={TrainingSession} />
+        <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
         <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
         <Miss component={NotFound} />
       </div>
