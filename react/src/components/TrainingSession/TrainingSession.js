@@ -2,6 +2,7 @@ import React from 'react';
 import fetchAPI, { deleteAPI, patchAPI } from '../../api/fetchAPI';
 import TrainingSessionTable from './TrainingSessionTable';
 import TrainingSessionForm from './TrainingSessionForm';
+import AddTrainingSession from './AddTrainingSession';
 import NotFound from '../Shared/NotFound';
 import { validateTrainingSession } from './helpers/validateTrainingSession';
 import './TrainingSession.css';
@@ -104,7 +105,7 @@ class TrainingSession extends React.Component {
           deleteTrainingSession={this.deleteTrainingSession} />}
         />
         <Match exactly pattern={`${pathname}/add`}
-          render={() => <TrainingSessionForm handleSubmit={this.createTrainingSession} title="Add Training Session" />}
+          render={() => <AddTrainingSession createTrainingSession={this.createTrainingSession} />}
         />
         <Match exactly pattern={`${pathname}/edit/:id`}
           render={({ params }) => <TrainingSessionForm trainingSessionId={ params.id } handleSubmit={ this.editTrainingSession } />}
