@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchAPI, { patchAPI } from '../../api/fetchAPI';
+import axios from 'axios';
 import TrainingSessionForm from './TrainingSessionForm';
 
 class EditTrainingSession extends React.Component {
@@ -23,9 +23,9 @@ class EditTrainingSession extends React.Component {
 
   loadTrainingSession() {
     const id = this.props.trainingSessionId
-    fetchAPI(`/trainingSessions/${id}`)
+    axios.get(`/trainingSessions/${id}`)
       .then(trainingSession => {
-        this.setState({ trainingSession })
+        this.setState({ trainingSession: trainingSession.data })
       })
       .catch(error => {
         this.setState({ error })
@@ -47,9 +47,9 @@ class EditTrainingSession extends React.Component {
   handleSubmit() {
     const { trainingSession } = this.state;
     const id = this.props.trainingSessionId;
-    patchAPI(`/trainingSessions/${id}`, trainingSession)
+    axios.patch(`/trainingSessions/${id}`, trainingSession)
       .then(trainingSession => {
-        console.log("Edit successful: ", trainingSession)
+        console.log("Edit successful: ", trainingSession.data )
       })
       .catch(error => {
         this.setState({ error })

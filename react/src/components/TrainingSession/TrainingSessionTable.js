@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchTrainingSession from './SearchTrainingSession';
 import TrainingSessionRow from './TrainingSessionRow';
-import fetchAPI, { deleteAPI } from '../../api/fetchAPI';
+import axios from 'axios';
 import { Panel } from 'muicss/react';
 
 // Styling
@@ -22,9 +22,9 @@ class TrainingSessionTable extends React.Component {
 
   loadTrainingSessions(conditions) {
     console.log(conditions)
-    fetchAPI('/trainingSessions', conditions)
+    axios.get('/trainingSessions', { params: conditions })
     .then(trainingSessions => {
-      this.setState({ trainingSessions });
+      this.setState({ trainingSessions: trainingSessions.data });
     })
     .catch(error => {
       this.setState({ error })
@@ -34,7 +34,7 @@ class TrainingSessionTable extends React.Component {
   deleteTrainingSession(id) {
     if (confirm('Are you sure you want to delete this session?')) {
       console.log("Blasting data into smithereens...");
-      deleteAPI(`/trainingSessions/${id}`)
+      axios.delete(`/trainingSessions/${id}`)
       .then(response => {
         // Filter out the deleted session
         const trainingSessions = this.state.trainingSessions.filter((trainingSession) => (trainingSession._id !== id))
@@ -47,7 +47,6 @@ class TrainingSessionTable extends React.Component {
     }
   }
 
-  // Get training sessions before rendering
   componentDidMount() {
     this.loadTrainingSessions();
   }

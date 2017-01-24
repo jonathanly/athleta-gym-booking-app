@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import fetchAPI from '../../api/fetchAPI';
-import { Form, Select, Option, Button } from 'muicss/react';
+import { Form, Select, Option, Button, Col } from 'muicss/react';
 import _ from 'lodash';
 
 class SearchTrainingSession extends React.Component {
@@ -21,12 +22,14 @@ class SearchTrainingSession extends React.Component {
     this.onDayChange = this.onDayChange.bind(this);
     this.onTimeChange = this.onTimeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   getTitles() {
-    fetchAPI('/trainingSessions')
+    axios.get('/trainingSessions')
       .then(trainingSessions => {
-        let titleOptions = _.uniq(trainingSessions.map(session => {return session.title}));
+        // return array of unique trainingSession.titles to state
+        let titleOptions = _.uniq(trainingSessions.data.map(session => {return session.title}));
         this.setState({ titleOptions });
       })
       .catch(error => {
@@ -48,13 +51,23 @@ class SearchTrainingSession extends React.Component {
 
   handleSubmit(event) {
     let { selectedTitle, selectedDay, selectedTime } = this.state;
-    console.log(selectedTitle);
     event.preventDefault();
     this.props.loadTrainingSessions({
       title: selectedTitle,
       day: selectedDay,
       time: selectedTime
     });
+  }
+
+  clearForm(event) {
+    const clear = {
+      selectedTitle: '',
+      selectedDay: '',
+      selectedTime: ''
+    }
+    event.preventDefault();
+    this.props.loadTrainingSessions(clear)
+    this.setState(clear)
   }
 
   componentWillMount() {
@@ -77,20 +90,27 @@ class SearchTrainingSession extends React.Component {
     return (
       <div>
         <Form inline={true} onSubmit={this.handleSubmit}>
-          <Select label="Class Name" value={this.state.selectedTitle} onChange={this.onTitleChange}>
-            <Option value="" label="" />
-            { titleOptions }
-          </Select>
-          <Select label="Day" value={this.state.selectedDay} onChange={this.onDayChange}>
-            <Option value="" label="" />
-            { dayOptions }
-          </Select>
-          <Select label="Time" value={this.state.selectedTime} onChange={this.onTimeChange}>
-            <Option value="" label="" />
-            { timeOptions }
-          </Select>
+          <Col md="4" xs="12">
+            <Select label="Class Name" value={this.state.selectedTitle} onChange={this.onTitleChange}>
+              <Option value="" label="" />
+              { titleOptions }
+            </Select>
+          </Col>
+          <Col md="4" xs="12">
+            <Select label="Day" value={this.state.selectedDay} onChange={this.onDayChange}>
+              <Option value="" label="" />
+              { dayOptions }
+            </Select>
+          </Col>
+          <Col md="4" xs="12">
+            <Select label="Time" value={this.state.selectedTime} onChange={this.onTimeChange}>
+              <Option value="" label="" />
+              { timeOptions }
+            </Select>
+          </Col>
           <Button variant="raised" type="submit" color="primary">Search</Button>
         </Form>
+        <Button variant="raised" type="submit" color="danger" onClick={this.clearForm}>Clear</Button>
       </div>
     )
   }
