@@ -27,7 +27,9 @@ class EditTrainingSession extends React.Component {
       .then(trainingSession => {
         this.setState({ trainingSession })
       })
-      .catch(error => { error })
+      .catch(error => {
+        this.setState({ error })
+      })
   }
 
   handleUserInput(trainingSession) {

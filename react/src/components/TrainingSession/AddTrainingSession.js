@@ -1,5 +1,5 @@
 import React from 'react';
-import { postAPI } from '../../api/fetchAPI';
+import { validateTrainingSession } from './helpers/validateTrainingSession';
 import TrainingSessionForm from './TrainingSessionForm';
 
 class AddTrainingSession extends React.Component {
@@ -34,7 +34,7 @@ class AddTrainingSession extends React.Component {
 
   handleSubmit() {
     const { trainingSession } = this.state;
-    postAPI('/trainingSessions', trainingSession)
+    validateTrainingSession(trainingSession)
       .then(trainingSession => {
         console.log("Added successfully: ", trainingSession)
       })

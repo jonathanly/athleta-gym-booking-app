@@ -1,9 +1,7 @@
 import React from 'react';
 import TrainingSessionTable from './TrainingSessionTable';
-import TrainingSessionForm from './TrainingSessionForm';
 import AddTrainingSession from './AddTrainingSession';
 import EditTrainingSession from './EditTrainingSession';
-import { validateTrainingSession } from './helpers/validateTrainingSession';
 import './TrainingSession.css';
 
 import { Link, Match } from 'react-router';
@@ -35,22 +33,8 @@ class TrainingSession extends React.Component {
   //   })
   // }
 
-  // editTrainingSession(values) {
-  //   console.log(values.trainingSessionId);
-  //   // console.log(values); // values are not being passed to function
-  //   patchAPI(`/trainingSessions/${values.trainingSessionId}`, values)
-  //     .then(response => {
-  //       console.log(response)
-  //       // Reload TrainingSessionTable
-  //       this.loadTrainingSessions();
-  //     })
-  //     .catch(error => {
-  //       this.setState({ error })
-  //     })
-  // }
-
   render() {
-    const { location, pattern, pathname, isExact } = this.props
+    const { pathname } = this.props
     const { error } = this.state;
     return (
       <div>

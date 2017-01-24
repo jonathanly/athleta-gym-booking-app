@@ -5,7 +5,14 @@ const router = express.Router();
 
 // Get index of all training sessions
 router.get('/', function(req, res, next) {
-  TrainingSession.find()
+  const { title, day, time } = req.query
+  let conditions = {}
+
+  if (title) { conditions.title = title }
+  if (day) { conditions.day = day }
+  if (time) { conditions.time = time }
+
+  TrainingSession.find(conditions)
     .then(trainingSessions => {
       console.log("Initiating data..")
       res.json(trainingSessions);
@@ -65,11 +72,13 @@ router.patch('/:id', function(req, res, next) {
         res.json(savedTrainingSession)
         console.log("after: " + savedTrainingSession)
       })
-      .catch(err => {
-        res.json({"error": "Training session could not be updated", err})
+      .catch(error => {
+        res.json(error)
       })
     })
-    .catch(err => {res.json(err)});
+    .catch(error => {
+      res.json(error)
+    });
 });
 
 // Delete a single training session

@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchTrainingSession from './SearchTrainingSession';
 import TrainingSessionRow from './TrainingSessionRow';
 import fetchAPI, { deleteAPI } from '../../api/fetchAPI';
 import { Panel } from 'muicss/react';
@@ -19,8 +20,9 @@ class TrainingSessionTable extends React.Component {
     this.deleteTrainingSession = this.deleteTrainingSession.bind(this);
   }
 
-  loadTrainingSessions() {
-    fetchAPI('/trainingSessions')
+  loadTrainingSessions(conditions) {
+    console.log(conditions)
+    fetchAPI('/trainingSessions', conditions)
     .then(trainingSessions => {
       this.setState({ trainingSessions });
     })
@@ -37,9 +39,7 @@ class TrainingSessionTable extends React.Component {
         // Filter out the deleted session
         const trainingSessions = this.state.trainingSessions.filter((trainingSession) => (trainingSession._id !== id))
         // Update the sessions in state, which will re-render
-        this.setState({
-          trainingSessions: trainingSessions
-        });
+        this.setState({ trainingSessions });
       })
       .catch(error => {
         this.setState({ error })
@@ -61,26 +61,32 @@ class TrainingSessionTable extends React.Component {
     })
 
     return(
-      <Panel>
-        <table className="mui-table mui-table-bordered" id="training-session-table">
-          <thead>
-            <tr>
-              <th style={s1}>Title</th>
-              <th style={s1}>Day</th>
-              <th style={s1}>Time</th>
-              <th style={s1}>Capacity</th>
-              <th style={s1}>Duration</th>
-              <th style={s1}>Date Added</th>
-              <th style={s1}>Last Updated</th>
-              <th style={s1}></th>
-              <th style={s1}></th>
-            </tr>
-          </thead>
-          <tbody>
-            {trainingSessionRows}
-          </tbody>
-        </table>
-      </Panel>
+      <div>
+        <h3>Search</h3>
+        <Panel>
+          <SearchTrainingSession loadTrainingSessions={this.loadTrainingSessions} />
+        </Panel>
+        <Panel>
+          <table className="mui-table mui-table-bordered" id="training-session-table">
+            <thead>
+              <tr>
+                <th style={s1}>Title</th>
+                <th style={s1}>Day</th>
+                <th style={s1}>Time</th>
+                <th style={s1}>Capacity</th>
+                <th style={s1}>Duration</th>
+                <th style={s1}>Date Added</th>
+                <th style={s1}>Last Updated</th>
+                <th style={s1}></th>
+                <th style={s1}></th>
+              </tr>
+            </thead>
+            <tbody>
+              {trainingSessionRows}
+            </tbody>
+          </table>
+        </Panel>
+      </div>
     );
   }
 }
