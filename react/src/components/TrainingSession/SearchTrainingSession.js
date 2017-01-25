@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import fetchAPI from '../../api/fetchAPI';
 import { Form, Select, Option, Button, Col } from 'muicss/react';
 import _ from 'lodash';
 
@@ -10,7 +9,7 @@ class SearchTrainingSession extends React.Component {
 
     this.state = {
       titleOptions: [],
-      dayOptions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      dayOptions: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       timeOptions: ["6:00AM", "8:30AM", "9:30AM", "10:00AM", "5:30PM", "6:00PM", "6:30PM", "7:00PM", "7:30PM"],
       selectedTitle: '',
       selectedDay: '',

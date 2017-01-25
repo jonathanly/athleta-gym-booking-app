@@ -6,7 +6,7 @@ const trainingSessionSchema = new Schema({
   title: { type: String, required: true },
   day: {
     type: String,
-    enum: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    enum: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   },
   time: String,
   duration: { type: Number, min: 0 },

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Input, Select, Option, Panel, Row, Col } from 'muicss/react';
 
 // Pre-rendered elements
-const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 const times = ["6:00AM", "8:30AM", "9:30AM", "10:00AM", "5:30PM", "6:00PM", "6:30PM", "7:00PM", "7:30PM"]
 const selectDay = days.map(day => (
   <Option key={day} value={day} label={day} />
