@@ -3,11 +3,11 @@ import './Timetable.css';
 import '../../App.css';
 
 
-const Timetable = ({logInControl}) => {
+const Timetable = (props) => {
   return (
     <div id="timetable">
       <h1>Group Training Timetable</h1>
-      <img className="sidebar-img" src={require('../../images/timetable.jpg')} alt="Group Training Timetable"></img>
+      <img src={require('../../images/timetable.jpg')} alt="Group Training Timetable"></img>
       <div>
         <div className="timetable-text">
           <h3>STRONG</h3>

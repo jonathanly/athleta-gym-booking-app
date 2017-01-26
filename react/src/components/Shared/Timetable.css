@@ -1,7 +1,7 @@
 
 #timetable {
-  height: 100%;
-  /*background-color: #ff6600;*/
+  padding-left: 50px;
+  padding-right: 50px;
   /*padding-top: 25px;
   padding-bottom: 25px;*/
   margin: 0;
@@ -10,13 +10,11 @@
 #timetable > h1 {
   color: #ff6600;
   font-family: 'Lato', sans-serif;;
-  /*font-weight: bold;*/
+  padding-bottom: 10px;
 }
 
 #timetable > img {
-  width: 87.5%;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  width: 82.5%;
 }
 
 .timetable-text {
