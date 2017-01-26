@@ -16,7 +16,7 @@
   transition: left 0.2s;
 }
 
-#sidedrawer {
+#sidebar {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -44,7 +44,7 @@
     left: 200px;
   }
 
-  #sidedrawer {
+  #sidebar {
     transform: translate(200px);
   }
 
@@ -52,19 +52,19 @@
     margin-left: 200px;
   }
 
-  body.hide-sidedrawer #header {
+  body.hide-sidebar #header {
     left: 0;
   }
 
-  body.hide-sidedrawer #sidedrawer {
+  body.hide-sidebar #sidebar {
     transform: translate(0px);
   }
 
-  body.hide-sidedrawer #content-wrapper {
+  body.hide-sidebar #content-wrapper {
     margin-left: 0;
   }
 
-  body.hide-sidedrawer #footer {
+  body.hide-sidebar #footer {
     margin-left: 0;
   }
 }
@@ -73,7 +73,7 @@
 /**
  * Toggle Side drawer
  */
-#sidedrawer.active {
+#sidebar.active {
   transform: translate(200px);
 }
 
@@ -81,7 +81,7 @@
 /**
  * Header CSS
  */
-.sidedrawer-toggle {
+.sidebar-toggle {
   color: #fff;
   cursor: pointer;
   font-size: 20px;
@@ -89,7 +89,7 @@
   margin-right: 10px;
 }
 
-.sidedrawer-toggle:hover {
+.sidebar-toggle:hover {
   color: #fff;
   text-decoration: none;
 }
@@ -97,50 +97,50 @@
 /**
  * Side drawer CSS
  */
-#sidedrawer-brand {
+#sidebar-brand {
   background-color: #000;
 }
 
-#sidedrawer img {
+#sidebar img {
   width: 175px;
 }
 
-#sidedrawer ul {
+#sidebar ul {
   list-style: none;
 }
 
-#sidedrawer > ul {
+#sidebar > ul {
   padding-left: 0px;
 }
 
-#sidedrawer li {
+#sidebar li {
   color: #fff;
 }
 
-#sidedrawer > ul > li:first-child {
+#sidebar > ul > li:first-child {
   padding-top: 15px;
 }
 
-#sidedrawer > ul > a > li > strong {
+#sidebar > ul > a > li > strong {
   color: #fff;
 }
 
-#sidedrawer > ul > a {
+#sidebar > ul > a {
   text-decoration: none;
 }
 
-#sidedrawer strong {
+#sidebar strong {
   display: block;
   padding: 15px 22px;
   cursor: pointer;
 }
 
-#sidedrawer strong:hover {
+#sidebar strong:hover {
   background-color: #ffb380;
   /*E0E0E0*/
 }
 
-#sidedrawer strong + ul > li {
+#sidebar strong + ul > li {
   padding: 6px 0px;
 }
 
