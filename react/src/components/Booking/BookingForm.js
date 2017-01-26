@@ -98,7 +98,7 @@ class BookingForm extends React.Component {
 
     return (
       <Panel>
-        <h1>Booking Form</h1>
+        <h3>Booking Form</h3>
         <Form name='booking' onSubmit={this.createNewBooking}>
           <Select name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>
             <Option value="" label="" />

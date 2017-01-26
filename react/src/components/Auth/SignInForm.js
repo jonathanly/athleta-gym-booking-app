@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { signIn } from '../../api/auth';
-import { Form, Input, Button } from 'muicss/react';
+import { Form, Input, Button, Panel } from 'muicss/react';
 
 function validatedSignIn({ email, password }) {
   // Trim to remove spaces
@@ -80,13 +80,15 @@ class SignInForm extends React.PureComponent {
 
     return (
       <div>
+        <h3>Log In</h3>
         { error && <p style={styles.errorMessage}>{error.message}</p> }
-
-        <Form onSubmit={this.onSignIn} style={styles.form}>
-          <Input hint="Email" name="email" type="email" required={true} style={styles.label}/>
-          <Input hint="Password" name="password" type="password" required={true} style={styles.label} />
-          <Button variant="raised" color="dark" type='submit' onSubmit={this.onSignIn}>Sign In</Button>
-        </Form>
+        <Panel>
+          <Form onSubmit={this.onSignIn} style={styles.form}>
+            <Input hint="Email" name="email" type="email" required={true} style={styles.label}/>
+            <Input hint="Password" name="password" type="password" required={true} style={styles.label} />
+            <Button variant="raised" color="primary" type='submit' onSubmit={this.onSignIn}>Sign In</Button>
+          </Form>
+        </Panel>
       </div>
     )
   }

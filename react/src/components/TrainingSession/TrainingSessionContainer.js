@@ -16,7 +16,9 @@ class TrainingSession extends React.Component {
 
     return (
       <div>
+
         <h3>Group Training Sessions</h3>
+
         <ul>
           <Link to={pathname}><li>View All</li></Link>
           <Link to={`${pathname}/add`}><li>Add Training Session</li></Link>

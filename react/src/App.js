@@ -1,10 +1,10 @@
 import React from 'react';
 import 'whatwg-fetch'; // Polyfills window.fetch
 import { signOut } from './api/auth';
-import UserRegistrationForm from './components/Auth/UserRegistrationForm';
+import SignUpForm from './components/Auth/SignUpForm';
 import TrainingSessionContainer from './components/TrainingSession/TrainingSessionContainer';
 import SignInForm from './components/Auth/SignInForm';
-import Home from './Home';
+import Home from './components/Layout/Home';
 import NotFound from './components/Shared/NotFound';
 import Booking from './components/Booking/Booking';
 
@@ -17,8 +17,6 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      // We first check with the API if a user is signed in
-      // needsToCheckSignIn: true,
       currentUser: null
     }
 
@@ -42,26 +40,51 @@ class App extends React.Component {
     if (isLoggedIn) {
       logInControl = <li onClick={this.onSignOut}>Log Out</li>;
     } else {
-      logInControl = <li><Link to='/login'>Log In</Link></li>;
+      logInControl = <Link to='/login'><li><strong>Log In</strong></li></Link>;
     };
 
     return (
       <div className="App">
+        {/* Sidedrawer  */}
+        <div id="sidedrawer" className="mui--no-user-select">
+            <div id="sidedrawer-brand" className="mui--appbar-line-height">
+              <span className="mui--text-title">
+                <img className="sidedrawer-img" src={require('./images/logo.png')} alt="Athleta 24/7 Gym"></img>
+              </span>
+            </div>
+          <div className="mui-divider"></div>
+          <ul>
+            <Link to='/'><li><strong>Home</strong></li></Link>
+            { logInControl }
+            <Link to="/signup"><li><strong>Sign Up</strong></li></Link>
+            <Link to="/trainingSessions"><li><strong>Training Sessions</strong></li></Link>
+            <Link to="/bookings"><li><strong>Book</strong></li></Link>
+          </ul>
+        </div>
 
-        <ul className="main-navigation">
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to="/signup">Sign Up</Link></li>
-          <li><Link to="/trainingSessions">Training Sessions</Link></li>
-          <li><Link to="/bookings">Book</Link></li>
-          { logInControl }
-        </ul>
+        {/* Header */}
+        <header id="header">
+          <div className="mui-appbar mui--appbar-line-height">
+            <div className="mui-container-fluid">
+              <a className="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
+              <a className="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+              <span className="mui--text-title mui--visible-xs-inline-block">Athleta 24/7</span>
+            </div>
+          </div>
+        </header>
 
-        <Match exactly pattern='/' component={Home} />
-        <Match exactly pattern='/signup' render={() => <UserRegistrationForm onUserSignedIn={this.onUserSignedIn} />} />
-        <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
-        <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
-        <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
-        <Miss component={NotFound} />
+        {/* Main Content */}
+        <div id="content-wrapper">
+          <div className="mui--appbar-height"></div>
+          <div className="mui-container-fluid">
+            <Match exactly pattern='/' component={Home} />
+            <Match exactly pattern='/signup' render={() => <SignUpForm onUserSignedIn={this.onUserSignedIn} />} />
+            <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
+            <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
+            <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
+            <Miss component={NotFound} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -70,3 +93,11 @@ class App extends React.Component {
 export default App;
 
 // <SignInForm onUserSignedIn={this.onUserSignedIn} />
+
+{/* <ul className="main-navigation">
+  <li><Link to='/'>Home</Link></li>
+  <li><Link to="/signup">Sign Up</Link></li>
+  <li><Link to="/trainingSessions">Training Sessions</Link></li>
+  <li><Link to="/bookings">Book</Link></li>
+  { logInControl }
+</ul> */}
