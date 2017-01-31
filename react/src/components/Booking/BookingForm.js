@@ -97,33 +97,35 @@ class BookingForm extends React.Component {
     });
 
     return (
-      <Panel>
+      <div>
         <h3>Booking Form</h3>
-        <Form name='booking' onSubmit={this.createNewBooking}>
-          <Select name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>
-            <Option value="" label="" />
-            {titleOptions}
-          </Select>
-          <SingleDatePicker name="date" id="date"
-            date={this.state.date}
-            focused={this.state.focused}
-            numberOfMonths={1}
-            required={true}
-            isDayBlocked={(date) => !_.includes(availableWeekdays, moment(date).format('dddd'))}
-            onDateChange={(date) => { this.setState({ date, selectedTime: '' }); }}
-            onFocusChange={({ focused }) => { this.setState({ focused }) }}
-          />
-          <Select name="classId" label="Time" type="text" required={true} value={this.state.selectedTime} onClick={this.onDateSelect}>
-            <Option value="" label="" />
-            {timeOptions}
-          </Select>
-          <h1>{"\n"}</h1>
-          <Button variant="raised" type="submit" color="primary">
-            <i className="fa fa-floppy-o" aria-hidden="true"/> Book
-          </Button>
-        </Form>
-        { availableWeekdays }
-      </Panel>
+        <Panel>
+          <Form name='booking' onSubmit={this.createNewBooking}>
+            <Select name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>
+              <Option value="" label="" />
+              {titleOptions}
+            </Select>
+            <SingleDatePicker name="date" id="date"
+              date={this.state.date}
+              focused={this.state.focused}
+              numberOfMonths={1}
+              required={true}
+              isDayBlocked={(date) => !_.includes(availableWeekdays, moment(date).format('dddd'))}
+              onDateChange={(date) => { this.setState({ date, selectedTime: '' }); }}
+              onFocusChange={({ focused }) => { this.setState({ focused }) }}
+            />
+            <Select name="classId" label="Time" type="text" required={true} value={this.state.selectedTime} onClick={this.onDateSelect}>
+              <Option value="" label="" />
+              {timeOptions}
+            </Select>
+            <h1>{"\n"}</h1>
+            <Button variant="raised" type="submit" color="primary">
+              <i className="fa fa-floppy-o" aria-hidden="true"/> Book
+            </Button>
+          </Form>
+          { availableWeekdays }
+        </Panel>
+      </div>
     )
   }
 }

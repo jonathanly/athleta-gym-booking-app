@@ -13,6 +13,7 @@ const Sidebar = ({logInControl}) => {
       <div className="mui-divider"></div>
       <ul>
         <Link to='/'><li><strong>Home</strong></li></Link>
+        <Link to="/account"><li><strong>Account</strong></li></Link>
         <Link to="/trainingSessions"><li><strong>Training Sessions</strong></li></Link>
         <Link to="/timetable"><li><strong>Group Training Timetable</strong></li></Link>
         <Link to="/bookings"><li><strong>Book</strong></li></Link>

@@ -5,7 +5,7 @@ class Booking extends React.Component {
   render() {
     return (
       <div>
-        <h3>This is where bookings will go</h3>
+        <h3>Booking Container</h3>
         <BookingForm currentUser={this.props.currentUser} />
       </div>
     )

@@ -1,16 +1,12 @@
 const express = require('express');
 const Booking = require('../models/Booking');
-// const TrainingSession = require('../models/TrainingSession');
 
 const router = express.Router();
 
 // Index: read all
-// /
-// /?date=2017-01-09&groupClass=X
 router.get('/', function(req, res, next) {
-  const { date, trainingSession } = req.query
+  const { date, trainingSession, user } = req.query
   let conditions = {}
-
   // if date query exists, set conditions.date equal to date query
   if (date) {
     conditions.date = date
@@ -18,9 +14,9 @@ router.get('/', function(req, res, next) {
   if (trainingSession) {
     conditions._trainingSession = trainingSession
   }
-
-  // Booking.count()
-  //   .then(count => { console.log('bookings', count) })
+  if (user) {
+    conditions._users = user
+  }
 
   Booking.find(conditions)
     .populate('_trainingSession _users')
@@ -60,21 +56,7 @@ router.post('/', function(req, res, next) {
       res.json({ message: err.message })
     });
 });
-//
-// // Update: update single
-// router.patch('/:id', function(req, res, next) {
-//     const { id } = req.params;
-//     let { change } = req.body;
-//     change = parseInt(change, 10)
-//     // Change is 1 or -1
-//     Class.findByIdAndUpdate(id, {
-//         $inc: { count: change }
-//     }, { new: true })
-//         .then(counter => {
-//             res.json(counter);
-//         });
-// });
-//
+
 // Delete: delete single
 router.delete('/:id', function(req, res, next) {
   const { id } = req.params;

@@ -74,8 +74,6 @@ class TrainingSessionTable extends React.Component {
                 <th style={s1}>Time</th>
                 <th style={s1}>Capacity</th>
                 <th style={s1}>Duration</th>
-                <th style={s1}>Date Added</th>
-                <th style={s1}>Last Updated</th>
                 <th style={s1}></th>
                 <th style={s1}></th>
               </tr>

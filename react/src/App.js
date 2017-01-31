@@ -1,6 +1,4 @@
 import React from 'react';
-import 'whatwg-fetch'; // Polyfills window.fetch
-import { signOut } from './api/auth';
 
 // Layouts
 import Home from './components/Shared/Home';
@@ -14,8 +12,10 @@ import Booking from './components/Booking/Booking';
 import SignInForm from './components/Auth/SignInForm';
 import SignUpForm from './components/Auth/SignUpForm';
 import TrainingSessionContainer from './components/TrainingSession/TrainingSessionContainer';
+import Account from './components/Account/Account';
 
-
+import 'whatwg-fetch'; // Polyfills window.fetch
+import { signOut } from './api/auth';
 import { Link, Match, Miss } from 'react-router';
 
 import './App.css';
@@ -46,7 +46,7 @@ class App extends React.Component {
     const isLoggedIn = !!this.state.currentUser;
     let logInControl = null;
     if (isLoggedIn) {
-      logInControl = <li onClick={this.onSignOut}>Log Out</li>;
+      logInControl = <li onClick={this.onSignOut}><strong>Log Out</strong></li>;
     } else {
       logInControl = <Link to='/login'><li><strong>Log In</strong></li></Link>;
     };
@@ -65,6 +65,7 @@ class App extends React.Component {
             <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
             <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
             <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
+            <Match pattern='/account' render={() => <Account currentUser={this.state.currentUser} />} />
             <Miss component={NotFound} />
           </div>
           <Match pattern='/timetable' component={Timetable} />
