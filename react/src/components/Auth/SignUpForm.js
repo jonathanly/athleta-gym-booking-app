@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { signUp } from "../../api/auth";
 import { Button, Form, Input, Panel } from 'muicss/react';
+import { Link } from 'react-router';
 
 class UserRegistrationForm extends React.Component {
   static propTypes = {
@@ -57,6 +58,7 @@ class UserRegistrationForm extends React.Component {
               <i className="fa fa-floppy-o" aria-hidden="true" /> Create
             </Button>
           </Form>
+          <Link to='/account'><Button variant="raised" color="accent">Go To Account</Button></Link>
         </Panel>
       </div>
     )

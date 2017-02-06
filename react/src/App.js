@@ -1,4 +1,7 @@
 import React from 'react';
+import 'whatwg-fetch'; // Polyfills window.fetch
+import { signOut } from './api/auth';
+import { Link, Match, Miss } from 'react-router';
 
 // Layouts
 import Home from './components/Shared/Home';
@@ -14,10 +17,6 @@ import SignUpForm from './components/Auth/SignUpForm';
 import TrainingSessionContainer from './components/TrainingSession/TrainingSessionContainer';
 import Account from './components/Account/Account';
 
-import 'whatwg-fetch'; // Polyfills window.fetch
-import { signOut } from './api/auth';
-import { Link, Match, Miss } from 'react-router';
-
 import './App.css';
 
 class App extends React.Component {
@@ -30,7 +29,6 @@ class App extends React.Component {
 
     this.onUserSignedIn = this.onUserSignedIn.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
-    // this.getCurrentUser = this.getCurrentUser.bind(this);
   }
 
   onUserSignedIn(user) {
@@ -48,7 +46,7 @@ class App extends React.Component {
     if (isLoggedIn) {
       logInControl = <li onClick={this.onSignOut}><strong>Log Out</strong></li>;
     } else {
-      logInControl = <Link to='/login'><li><strong>Log In</strong></li></Link>;
+      logInControl = <Link to='/signin'><li><strong>Log In</strong></li></Link>;
     };
 
     return (
@@ -62,7 +60,7 @@ class App extends React.Component {
           <div className="mui-container-fluid">
             <Match exactly pattern='/' component={Home} />
             <Match exactly pattern='/signup' render={() => <SignUpForm onUserSignedIn={this.onUserSignedIn} />} />
-            <Match exactly pattern='/login' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
+            <Match exactly pattern='/signin' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
             <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
             <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
             <Match pattern='/account' render={() => <Account currentUser={this.state.currentUser} />} />

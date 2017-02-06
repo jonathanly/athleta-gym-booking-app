@@ -6,10 +6,10 @@ class Account extends React.Component {
   render() {
     return(
       <div>
-        <h3>Account Details</h3>
+        <h3><strong>Account Details</strong></h3>
         <AccountDetails currentUser={this.props.currentUser} />
         <hr />
-        <h3>Bookings</h3>
+        <h3><strong>Bookings</strong></h3>
         <AccountBookings currentUser={this.props.currentUser} />
       </div>
     )

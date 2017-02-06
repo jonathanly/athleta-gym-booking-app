@@ -4,7 +4,7 @@ import AddTrainingSession from './AddTrainingSession';
 import EditTrainingSession from './EditTrainingSession';
 import './TrainingSession.css';
 
-import { Link, Match } from 'react-router';
+import { Match } from 'react-router';
 
 class TrainingSession extends React.Component {
   // Error handling
@@ -19,14 +19,9 @@ class TrainingSession extends React.Component {
 
         <h3>Group Training Sessions</h3>
 
-        <ul>
-          <Link to={pathname}><li>View All</li></Link>
-          <Link to={`${pathname}/add`}><li>Add Training Session</li></Link>
-        </ul>
-
-        <Match exactly pattern={pathname} component={TrainingSessionTable} />
-        <Match exactly pattern={`${pathname}/add`} component={AddTrainingSession} />
-        <Match exactly pattern={`${pathname}/edit/:id`}
+        <Match exactly pattern='/trainingSessions' component={TrainingSessionTable} />
+        <Match exactly pattern='/trainingSessions/add' component={AddTrainingSession} />
+        <Match exactly pattern='/trainingSessions/edit/:id'
           render={({ params }) => <EditTrainingSession trainingSessionId={ params.id } />}
         />
       </div>

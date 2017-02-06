@@ -21,7 +21,6 @@ class TrainingSessionTable extends React.Component {
   }
 
   loadTrainingSessions(conditions) {
-    console.log(conditions)
     axios.get('/trainingSessions', { params: conditions })
     .then(trainingSessions => {
       this.setState({ trainingSessions: trainingSessions.data });

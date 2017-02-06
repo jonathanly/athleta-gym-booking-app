@@ -13,7 +13,7 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 0;
   transition: left 0.2s;
 }
 
@@ -131,6 +131,7 @@
 }
 
 #sidebar strong {
+  text-align: left;
   display: block;
   padding: 15px 22px;
   cursor: pointer;
@@ -143,6 +144,16 @@
 
 #sidebar strong + ul > li {
   padding: 6px 0px;
+}
+
+.sidebar-submenu > a {
+  display: inherit;
+  text-align: left;
+}
+
+.sidebar-submenu > a > li {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .mui-appbar {
