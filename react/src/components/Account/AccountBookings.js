@@ -35,9 +35,9 @@ class AccountBookings extends React.Component {
   }
 
   render() {
-    const userBookings = (this.state.userBookings).map(booking => {
+    const userBookings = (this.state.userBookings).map((booking, i) => {
       return (
-        <tr key={booking.id}>
+        <tr key={i}>
           <td>{booking._trainingSession.title}</td>
           <td>{booking.date}</td>
           <td>{booking._trainingSession.time}</td>
@@ -49,9 +49,11 @@ class AccountBookings extends React.Component {
       <Panel>
         <table className="mui-table mui-table-bordered">
           <thead>
-            <th style={s1}>Class</th>
-            <th style={s1}>Date</th>
-            <th style={s1}>Time</th>
+            <tr>
+              <th style={s1}>Class</th>
+              <th style={s1}>Date</th>
+              <th style={s1}>Time</th>
+            </tr>
           </thead>
           <tbody>
             {userBookings}

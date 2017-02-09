@@ -159,3 +159,21 @@
 .mui-appbar {
   background-color: #000;
 }
+
+.home {
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.home > h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.home-button {
+  width: 9em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
