@@ -97,15 +97,15 @@ class BookingForm extends React.Component {
     });
 
     return (
-      <div>
-        <h3>Booking Form</h3>
-        <Panel>
+      <div className="booking-form">
+        <h2>Booking Form</h2>
+        <Panel className="booking-form-panel">
           <Form name='booking' onSubmit={this.createNewBooking}>
-            <Select name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>
+            <Select className="booking-form-input" name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>
               <Option value="" label="" />
               {titleOptions}
             </Select>
-            <SingleDatePicker name="date" id="date"
+            <SingleDatePicker className="booking-form-input" name="date" id="date"
               date={this.state.date}
               focused={this.state.focused}
               numberOfMonths={1}
@@ -114,7 +114,7 @@ class BookingForm extends React.Component {
               onDateChange={(date) => { this.setState({ date, selectedTime: '' }); }}
               onFocusChange={({ focused }) => { this.setState({ focused }) }}
             />
-            <Select name="classId" label="Time" type="text" required={true} value={this.state.selectedTime} onClick={this.onDateSelect}>
+            <Select className="booking-form-input" name="classId" label="Time" type="text" required={true} value={this.state.selectedTime} onClick={this.onDateSelect}>
               <Option value="" label="" />
               {timeOptions}
             </Select>

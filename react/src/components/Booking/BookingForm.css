@@ -1,3 +1,23 @@
+/** Booking Form **/
+
+.booking-form {
+
+}
+
+.booking-form > h2 {
+  color: #ff6600;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.booking-form-panel {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.booking-form-input {
+  margin: 1em 2em 1em 2em;
+}
 /* react-dates SingleDatePicker fix */
 
 .CalendarMonthGrid--horizontal {
