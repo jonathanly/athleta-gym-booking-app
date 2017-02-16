@@ -1,70 +1,21 @@
-# MongoDB + Express + React + Node + 💖
+##MongoDB Schema Design
 
-## Set up
+![MongoDB Schema](https://github.com/jonathanly/Files/blob/master/Athleta%2024:7/AthletaAppSchema.png)
 
-### API
+##User Stories
+###Admin/Staff
+- As an admin, I want to view an index of all currently available training sessions on the weekly timetable.
+- As an admin, I want to be able to quickly search through the training session index
+- As an admin, I want to add, remove and/or update group training sessions from the weekly timetable.
+- As an admin, I want to retrieve booking details for a specific class.
+- As an admin, I want to view attendance rates for a specific class.
+- As an admin, I want to view an index of users using the app.
 
-Create `api/.env` file:
-```
-MONGO_URL=mongodb://localhost/test
-SESSION_SECRET=__REMEMBER_TO_CHANGE_THIS__
-```
-
-### React Front-end
-
-Create `react/.env` file:
-```
-REACT_APP_API_URL=http://localhost:3001
-REACT_APP_SOMETHING_ELSE=1
-```
-
-## Run
-
-### Local MongoDB
-
-```
-mkdir -p ~/db/mongodb
-mongod --dbpath ~/db/mongodb/
-```
-
-If `mongodb.lock` error, shut down existing `mongod` processes:
-```
-ps aux | grep mongo
-kill -9 PID
-```
-
-### API
-
-```
-cd api
-npm install
-PORT=3001 nodemon
-```
-
-### React
-
-```
-cd react
-npm install
-npm start
-```
-
-## Deploying
-
-### API
-
-```
-cd api
-now -e MONGO_URL=mongodb://USERNAME:PASSWORD@ACCOUNT.mlab.com:41078/staging -e NODE_ENV=production
-```
-
-Copy the URL to be used below.
-
-### React
-
-```
-cd react
-REACT_APP_API_URL=__YOUR_NOW_API_URL__ npm run build
-cd build
-now
-```
+###Users
+- As a user, I want to sign up to the website.
+- As a user, I want to view the training session timetable with relevant information on the sessions.
+- As a user, I want to easily book a specific training session by training session title, time and date.
+- As a user, I want to view my account details, and edit them if needed in the future.
+- As a user, I want to view past bookings to track my training session history.
+- As a user, I want to view future bookings to track what classes I'm booked in for.
+- As a user, I want to remove bookings if I can no longer attend them.```

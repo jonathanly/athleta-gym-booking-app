@@ -44,9 +44,13 @@ class AddTrainingSession extends React.Component {
   }
 
   render() {
+    const { error } = this.state;
+
     return (
       <div>
-        <h3>Add Training Session</h3>
+
+        { error && <p>{ error.message }</p> }
+
         <TrainingSessionForm handleSubmit={this.handleSubmit} handleUserInput={this.handleUserInput} trainingSession={this.state.trainingSession}/>
       </div>
     )

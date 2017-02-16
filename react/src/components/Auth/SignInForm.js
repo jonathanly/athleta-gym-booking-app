@@ -19,7 +19,6 @@ function validatedSignIn({ email, password }) {
   return signIn({ email, password })
 }
 
-// CSS styles we use in render() below
 const styles = {
     form: {
         padding: '1rem'
@@ -60,13 +59,11 @@ class SignInForm extends React.PureComponent {
     })
     // Success! Pass our signed in user along
     .then(data => {
-      this.props.onUserSignedIn(data)
+      this.props.onUserSignedIn(data);
     })
     // Error either from validation or the server
     .catch(error => {
-      // Give a nicer error message
       if (error.message === 'Unauthorized') {
-        // Message inspired by Twitter’s
         error = new Error('The email and password that you entered did not match our records.')
       }
 

@@ -60,7 +60,6 @@ class BookingForm extends React.Component {
     })
   }
 
-
   createNewBooking(event) {
     event.preventDefault();
     console.log(`User id: ${this.props.currentUser.user}`)
@@ -98,7 +97,7 @@ class BookingForm extends React.Component {
 
     return (
       <div className="booking-form">
-        <h2>Booking Form</h2>
+        <h1>Booking Form</h1>
         <Panel className="booking-form-panel">
           <Form name='booking' onSubmit={this.createNewBooking}>
             <Select className="booking-form-input" name="title" label="Class" type="text" required={true} onChange={this.onTitleSelect}>

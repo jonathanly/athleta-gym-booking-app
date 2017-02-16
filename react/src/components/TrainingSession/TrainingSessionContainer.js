@@ -12,8 +12,6 @@ class TrainingSession extends React.Component {
   // { error && <p>{ error.message }</p> }
 
   render() {
-    const { pathname } = this.props
-
     return (
       <div>
 

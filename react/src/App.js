@@ -52,7 +52,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Sidebar logInControl={logInControl} />
+        <Sidebar logInControl={logInControl} isLoggedIn={isLoggedIn}/>
 
         {/* Main Content */}
         <div id="content-wrapper">
@@ -63,7 +63,7 @@ class App extends React.Component {
             <Match exactly pattern='/signin' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
             <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
             <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
-            <Match pattern='/account' render={() => <Account currentUser={this.state.currentUser} />} />
+            <Match pattern='/account' render={() => <Account currentUser={this.state.currentUser} onUserSignedIn={this.onUserSignedIn}/>} />
             <Miss component={NotFound} />
           </div>
           <Match pattern='/timetable' component={Timetable} />
@@ -74,13 +74,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// <SignInForm onUserSignedIn={this.onUserSignedIn} />
-
-{/* <ul className="main-navigation">
-  <li><Link to='/'>Home</Link></li>
-  <li><Link to="/signup">Sign Up</Link></li>
-  <li><Link to="/trainingSessions">Training Sessions</Link></li>
-  <li><Link to="/bookings">Book</Link></li>
-  { logInControl }
-</ul> */}

@@ -29,6 +29,7 @@ class Sidebar extends React.Component {
   render() {
     const trainingSessionStyle = this.state.trainingSessionActive ? display.active : display.inactive
 
+    
     return (
       <div id="sidebar" className="mui--no-user-select">
         <div id="sidebar-brand" className="mui--appbar-line-height">

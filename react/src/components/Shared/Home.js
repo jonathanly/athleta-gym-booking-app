@@ -10,7 +10,7 @@ class Home extends React.Component {
         <h1>Welcome to Athleta 24/7 Group Training Booking App</h1>
         <div>
           <Link to='/signup'><Button className="home-button" variant="raised" color="primary">New User?</Button></Link>
-          <Link to='/login'><Button className="home-button" variant="raised" color="danger">Log in</Button></Link>
+          <Link to='/signin'><Button className="home-button" variant="raised" color="danger">Log in</Button></Link>
         </div>
       </div>
     )

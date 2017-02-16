@@ -1,10 +1,7 @@
 /** Booking Form **/
 
-.booking-form {
-
-}
-
-.booking-form > h2 {
+.booking-form > h1 {
+  font-family: "Lato", sans-serif;
   color: #ff6600;
   padding-top: 0.5em;
   padding-bottom: 0.5em;

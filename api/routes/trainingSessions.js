@@ -46,7 +46,7 @@ router.post('/', function(req, res, next) {
       res.json(trainingSession);
     })
     .catch(err => {
-      res.json(err)
+      res.status(400).json(err)
   });
 });
 
