@@ -18,4 +18,4 @@
 - As a user, I want to view my account details, and edit them if needed in the future.
 - As a user, I want to view past bookings to track my training session history.
 - As a user, I want to view future bookings to track what classes I'm booked in for.
-- As a user, I want to remove bookings if I can no longer attend them.```
+- As a user, I want to remove bookings if I can no longer attend them.
