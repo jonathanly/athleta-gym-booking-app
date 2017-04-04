@@ -1,6 +1,12 @@
-##MongoDB Schema Design
+##Project Brief
+- Design, build, deploy and present an application built for a real world customer.
+- Meet with the business owner or organisation manager to find out what challenges they face.
+- Find a problem that can be solved with an application.
 
-![MongoDB Schema](https://github.com/jonathanly/Files/blob/master/Athleta%2024:7/AthletaAppSchema.png)
+##Technology Stack
+Front-end : ReactJS
+Back-end : NodeJS, ExpressJS
+Database : MongoDB
 
 ##User Stories
 ###Admin/Staff
@@ -19,3 +25,6 @@
 - As a user, I want to view past bookings to track my training session history.
 - As a user, I want to view future bookings to track what classes I'm booked in for.
 - As a user, I want to remove bookings if I can no longer attend them.
+
+##MongoDB Schema Design
+![MongoDB Schema](https://github.com/jonathanly/Files/blob/master/Athleta%2024:7/AthletaAppSchema.png)

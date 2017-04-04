@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match } from 'react-router';
+import { Route } from 'react-router-dom';
 
 // Layouts
 import Header from './Header';
@@ -25,11 +25,11 @@ class MainContainer extends React.Component {
           <div className="mui--appbar-height"></div>
           <div className="mui-container-fluid">
 
-            <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
-            <Match pattern='/bookings' render={() => <Booking currentUser={this.props.currentUser} />} />
-            <Match pattern='/account' render={() => <Account currentUser={this.props.currentUser} />} />
+            <Route pattern='/trainingSessions' component={TrainingSessionContainer} />
+            <Route pattern='/bookings' render={() => <Booking currentUser={this.props.currentUser} />} />
+            <Route pattern='/account' render={() => <Account currentUser={this.props.currentUser} />} />
           </div>
-          <Match pattern='/timetable' component={Timetable} />
+          <Route pattern='/timetable' component={Timetable} />
         </div>
       </div>
     )

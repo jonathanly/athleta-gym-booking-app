@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'muicss/react';
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 class TrainingSessionRow extends React.Component {
   render() {

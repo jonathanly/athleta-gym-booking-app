@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import '../../App.css';
 
 const display = {
@@ -29,7 +29,7 @@ class Sidebar extends React.Component {
   render() {
     const trainingSessionStyle = this.state.trainingSessionActive ? display.active : display.inactive
 
-    
+
     return (
       <div id="sidebar" className="mui--no-user-select">
         <div id="sidebar-brand" className="mui--appbar-line-height">

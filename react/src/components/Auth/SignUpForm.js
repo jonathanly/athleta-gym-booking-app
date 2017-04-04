@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { signUp } from "../../api/auth";
 import { Button, Form, Input, Panel } from 'muicss/react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class UserRegistrationForm extends React.Component {
   static propTypes = {

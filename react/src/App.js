@@ -1,7 +1,7 @@
 import React from 'react';
 import 'whatwg-fetch'; // Polyfills window.fetch
 import { signOut } from './api/auth';
-import { Link, Match, Miss } from 'react-router';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 // Layouts
 import Home from './components/Shared/Home';
@@ -50,25 +50,30 @@ class App extends React.Component {
     };
 
     return (
-      <div className="App">
-        <Header />
-        <Sidebar logInControl={logInControl} isLoggedIn={isLoggedIn}/>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Sidebar logInControl={logInControl} isLoggedIn={isLoggedIn}/>
 
-        {/* Main Content */}
-        <div id="content-wrapper">
-          <div className="mui--appbar-height"></div>
-          <div className="mui-container-fluid">
-            <Match exactly pattern='/' component={Home} />
-            <Match exactly pattern='/signup' render={() => <SignUpForm onUserSignedIn={this.onUserSignedIn} />} />
-            <Match exactly pattern='/signin' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
-            <Match pattern='/trainingSessions' component={TrainingSessionContainer} />
-            <Match pattern='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
-            <Match pattern='/account' render={() => <Account currentUser={this.state.currentUser} onUserSignedIn={this.onUserSignedIn}/>} />
-            <Miss component={NotFound} />
+          {/* Main Content */}
+          <div id="content-wrapper">
+            <div className="mui--appbar-height"></div>
+            <div className="mui-container-fluid">
+            {/* <Switch> */}
+              <Route exact strict path='/' component={Home} />
+              <Route exact strict path='/signup' render={() => <SignUpForm onUserSignedIn={this.onUserSignedIn} />} />
+              <Route exact strict path='/signin' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
+              <Route exact strict path='/trainingSessions' component={TrainingSessionContainer} />
+              <Route exact strict path='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
+              <Route exact strict path='/account' render={() => <Account currentUser={this.state.currentUser} onUserSignedIn={this.onUserSignedIn}/>} />
+              <Route exact strict path='/timetable' component={Timetable} />
+            {/* </Switch> */}
+              {/* There is no longer a Miss component <Miss component={NotFound} /> */}
+            </div>
+            {/* <Route pattern='/timetable' component={Timetable} /> */}
           </div>
-          <Match pattern='/timetable' component={Timetable} />
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

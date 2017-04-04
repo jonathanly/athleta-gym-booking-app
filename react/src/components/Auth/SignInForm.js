@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { signIn } from '../../api/auth';
 import { Form, Input, Button, Panel } from 'muicss/react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function validatedSignIn({ email, password }) {
   // Trim to remove spaces
