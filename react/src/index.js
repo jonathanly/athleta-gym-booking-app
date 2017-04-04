@@ -9,10 +9,7 @@ import './index.css';
 import axios from 'axios';
 axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 
-ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-),
+ReactDOM.render(
+  <App />,
   document.getElementById('root')
 );

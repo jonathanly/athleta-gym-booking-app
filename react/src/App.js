@@ -22,20 +22,14 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      currentUser: null
-    }
-
-    this.onUserSignedIn = this.onUserSignedIn.bind(this);
-    this.onSignOut = this.onSignOut.bind(this);
+    this.state = { currentUser: null }
   }
 
-  onUserSignedIn(user) {
+  onUserSignedIn = (user) => {
     this.setState({ currentUser: user })
   }
 
-  onSignOut() {
+  onSignOut = () => {
     this.setState({ currentUser: null })
     signOut();
   }
@@ -55,22 +49,21 @@ class App extends React.Component {
           <Header />
           <Sidebar logInControl={logInControl} isLoggedIn={isLoggedIn}/>
 
-          {/* Main Content */}
           <div id="content-wrapper">
             <div className="mui--appbar-height"></div>
             <div className="mui-container-fluid">
-            {/* <Switch> */}
-              <Route exact strict path='/' component={Home} />
-              <Route exact strict path='/signup' render={() => <SignUpForm onUserSignedIn={this.onUserSignedIn} />} />
-              <Route exact strict path='/signin' render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
-              <Route exact strict path='/trainingSessions' component={TrainingSessionContainer} />
-              <Route exact strict path='/bookings' render={() => <Booking currentUser={this.state.currentUser} />} />
-              <Route exact strict path='/account' render={() => <Account currentUser={this.state.currentUser} onUserSignedIn={this.onUserSignedIn}/>} />
-              <Route exact strict path='/timetable' component={Timetable} />
-            {/* </Switch> */}
-              {/* There is no longer a Miss component <Miss component={NotFound} /> */}
+
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/signup" render={() => <SignUpForm onUserSignedIn={this.onUserSignedIn} />} />
+                <Route path="/signin" render={() => <SignInForm onUserSignedIn={this.onUserSignedIn} />} />
+                <Route path="/trainingSessions" component={TrainingSessionContainer} />
+                <Route path="/bookings" render={() => <Booking currentUser={this.state.currentUser} />} />
+                <Route path="/account" render={() => <Account currentUser={this.state.currentUser} onUserSignedIn={this.onUserSignedIn}/>} />
+                <Route path="/timetable" component={Timetable} />
+              </Switch>
+
             </div>
-            {/* <Route pattern='/timetable' component={Timetable} /> */}
           </div>
         </div>
       </BrowserRouter>
@@ -79,3 +72,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+{/* There is no longer a Miss component <Miss component={NotFound} /> */}
