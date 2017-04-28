@@ -3,6 +3,7 @@
 ## Overview
 * [Project Brief](#project-brief)
 * [Project Presentation](#project-presentation)
+* [Business Problem](#business-problem)
 * [Technology Stack](#technology-stack)
 * [User Stories](#user-stories)
 * [MongoDB Schema Design](#mongodb-schema-design)
@@ -23,7 +24,13 @@ Presentation slides for the project can be found [here](https://docs.google.com/
 [Return to overview](#overview)
 
 ## Business problem
--
+* Group training sessions are an integral part of what is offered by Athleta 24/7.
+* Current maintenance requires manual editing of training sessions and timetable.
+* Gym members sign up to these classes via phone or paper forms.
+* Updates to timetable can be tedious & time consuming.
+* Poor tracking of class statistics, such class attendance.
+* Member bookings can be misplaced due to manual handling.
+
 
 [Return to overview](#overview)
 
