@@ -1,3 +1,7 @@
+Overview
+========
+* [Project brief](#project-brief)
+
 ## Project Brief
 - Design, build, deploy and present an application built for a real world customer.
 - Meet with the business owner or organisation manager to find out what challenges they face.
