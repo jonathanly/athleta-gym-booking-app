@@ -1,5 +1,6 @@
 ## Overview
 * [Project Brief](#project-brief)
+* [Project Presentation](#project-presentation)
 * [Technology Stack](#technology-stack)
 * [User Stories](#user-stories)
 * [MongoDB Schema Design](#mongodb-schema-design)
@@ -11,6 +12,16 @@
 - Find a problem that can be solved with an application.
 
 The deployed webpage can be found here : [Athleta Gym Booking App (Click here)](https://athletagym.herokuapp.com/)
+
+[Return to overview](#overview)
+
+## Project Presentation
+Presentation slides for the project can be found [here](https://docs.google.com/presentation/d/1CHX9-wuKX2Up9qWPSobCOzV4RdjpDzKCRQ78UtRbA4k/edit?usp=sharing)
+
+[Return to overview](#overview)
+
+## Business problem
+-
 
 [Return to overview](#overview)
 
