@@ -49,19 +49,20 @@ The deployed webpage can be found here : [Athleta Gym Booking App (Click here)](
 [Return to overview](#overview)
 
 ## Other Packages and Tools
-* [React-router v4](https://github.com/ReactTraining/react-router/tree/v4)
+* [React-router v4](https://reacttraining.com/react-router/)
 * [Axios](https://github.com/mzabriskie/axios)
 * [MUI-CSS](https://www.muicss.com/)
 * [Heroku](https://www.heroku.com)
 * [Sketch](https://www.sketchapp.com)
-* [Trello](https://trello.com)
+* [Trello](https://www.trello.com)
 
 [Return to overview](#overview)
 
 ## Style Guide
 ### CSS framework
-
-The decision was made to use Material UI due to the rich features it offers (such as modals, cards, toggling) and our belief that it would enhance the user experience. Material UI allowed us to integrate the design with our React components.
-The look and feel of Material also fits in with our design aesthestic, being clean, minimal and flat.
+As the sole developer working on this project, the decision was made to use MUI-CSS to provide styled components in order to focus on learning the React library. MUI-CSS is also rich in features (component based) that easily integrate with React, which I think would enhance the user experience. MUI-CSS design is clean, minimal and flat, which fits in to my design aesthestic direction.
 
 ### Colour
+The colours selected were based the client's existing website. Naturally, I decided the app should complement the client's chosen colour scheme.
+
+[Return to overview](#overview)
