@@ -2,6 +2,7 @@ Overview
 ========
 * [Project brief](#project-brief)
 * [User Stories](#user-stories)
+* [MongoDB Schema Design](#mongoDB-schema-design)
 
 ## Project Brief
 - Design, build, deploy and present an application built for a real world customer.
