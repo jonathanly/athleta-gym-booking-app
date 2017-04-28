@@ -3,10 +3,16 @@
 - Meet with the business owner or organisation manager to find out what challenges they face.
 - Find a problem that can be solved with an application.
 
-## Technology Stack
-Front-end : ReactJS
-Back-end : NodeJS, ExpressJS
-Database : MongoDB
+Technology stack
+========
+Front-end:
+* React.js  
+
+Back-end:
+* MongoDB
+* Express.js
+* Node.js
+
 
 ## User Stories
 ### Admin/Staff
@@ -28,4 +34,3 @@ Database : MongoDB
 
 ## MongoDB Schema Design
 ![MongoDB Schema](https://github.com/jonathanly/Files/blob/master/Athleta%2024:7/AthletaAppSchema.png)
-
