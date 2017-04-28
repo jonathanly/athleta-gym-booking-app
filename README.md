@@ -1,6 +1,7 @@
 Overview
 ========
 * [Project brief](#project-brief)
+* [User Stories](#user-stories)
 
 ## Project Brief
 - Design, build, deploy and present an application built for a real world customer.
