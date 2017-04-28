@@ -1,7 +1,9 @@
 ## Overview
-* [Project brief](#project-brief)
+* [Project Brief](#project-brief)
+* [Technology Stack](#technology-stack)
 * [User Stories](#user-stories)
 * [MongoDB Schema Design](#mongodb-schema-design)
+* [Style Guide](#style-guide)
 
 ## Project Brief
 - Design, build, deploy and present an application built for a real world customer.
