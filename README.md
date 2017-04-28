@@ -1,5 +1,4 @@
-Overview
-========
+## Overview
 * [Project brief](#project-brief)
 * [User Stories](#user-stories)
 * [MongoDB Schema Design](#mongodb-schema-design)
@@ -46,4 +45,23 @@ The deployed webpage can be found here : [Athleta Gym Booking App (Click here)](
 
 ## MongoDB Schema Design
 ![MongoDB Schema](https://github.com/jonathanly/Files/blob/master/Athleta%2024:7/AthletaAppSchema.png)
+
 [Return to overview](#overview)
+
+## Other Packages and Tools
+* [React-router v4](https://github.com/ReactTraining/react-router/tree/v4)
+* [Axios](https://github.com/mzabriskie/axios)
+* [MUI-CSS](https://www.muicss.com/)
+* [Heroku](https://www.heroku.com)
+* [Sketch](https://www.sketchapp.com)
+* [Trello](https://trello.com)
+
+[Return to overview](#overview)
+
+## Style Guide
+### CSS framework
+
+The decision was made to use Material UI due to the rich features it offers (such as modals, cards, toggling) and our belief that it would enhance the user experience. Material UI allowed us to integrate the design with our React components.
+The look and feel of Material also fits in with our design aesthestic, being clean, minimal and flat.
+
+### Colour
