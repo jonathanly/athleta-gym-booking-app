@@ -1,3 +1,5 @@
+# Athleta 24/7 Gym Group Training Booking App
+
 ## Overview
 * [Project Brief](#project-brief)
 * [Project Presentation](#project-presentation)
