@@ -3,6 +3,8 @@
 - Meet with the business owner or organisation manager to find out what challenges they face.
 - Find a problem that can be solved with an application.
 
+The deployed webpage can be found here : [Athleta Gym Booking App (Click here)](https://athletagym.herokuapp.com/)
+
 ## Technology stack
 **Front-end:**
 * ReactJS  
