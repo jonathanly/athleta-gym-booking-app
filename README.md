@@ -3,15 +3,14 @@
 - Meet with the business owner or organisation manager to find out what challenges they face.
 - Find a problem that can be solved with an application.
 
-Technology stack
-========
+## Technology stack
 Front-end:
-* React.js  
+* ReactJS  
 
 Back-end:
 * MongoDB
-* Express.js
-* Node.js
+* NodeJS
+* ExpressJS
 
 
 ## User Stories
