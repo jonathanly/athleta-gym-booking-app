@@ -4,10 +4,10 @@
 - Find a problem that can be solved with an application.
 
 ## Technology stack
-Front-end:
+** Front-end: **
 * ReactJS  
 
-Back-end:
+** Back-end: **
 * MongoDB
 * NodeJS
 * ExpressJS
