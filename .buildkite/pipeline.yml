@@ -8,5 +8,5 @@ steps:
     key: dynamic-pipeline
 
 notify:
+  - slack: "#some-channel"
   # - if: build.state == 'failed'
-  -  slack: "#some-channel"
