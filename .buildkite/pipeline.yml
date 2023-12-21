@@ -6,4 +6,3 @@ steps:
   - label: "Dynamic Pipeline Steps"
     command: ".buildkite/dynamic-steps.sh | buildkite-agent pipeline upload"
     key: dynamic-pipeline
-    depends_on: build
