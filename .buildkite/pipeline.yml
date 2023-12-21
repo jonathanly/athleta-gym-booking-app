@@ -1,0 +1,12 @@
+steps:
+  - label: ":hammer: Passing Build"
+    command: "sleep 1 && exit 0"
+    key: build
+
+  - label: "Dynamic Pipeline Steps"
+    command: ".buildkite/dynamic-steps.sh | buildkite-agent pipeline upload"
+    key: dynamic-pipeline
+
+notify:
+  - slack: "#some-channel"
+  # - if: build.state == 'failed'
