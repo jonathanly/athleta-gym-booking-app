@@ -6,3 +6,7 @@ steps:
   - label: "Dynamic Pipeline Steps"
     command: ".buildkite/dynamic-steps.sh | buildkite-agent pipeline upload"
     key: dynamic-pipeline
+
+notify:
+  # - if: build.state == 'failed'
+  -  slack: "#some-channel"
