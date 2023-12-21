@@ -1,0 +1,9 @@
+steps:
+  - label: ":hammer: Passing Build"
+    command: "sleep 3 && exit 0"
+    key: build
+
+  - label: "Dynamic Pipeline Steps"
+    command: "buildkite-agent pipeline upload ../scripts/dynamic-steps.sh"
+    key: dynamic-pipeline
+    depends_on: build
