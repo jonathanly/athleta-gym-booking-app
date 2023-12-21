@@ -2,14 +2,11 @@
 
 set -eu
 
-echo << Command
-  - label: 'Soft fail with custom gh commit status'
-    command: "sleep 5 && make test"
-    soft_fail: true
-    notify:
-    - github_commit_status:
-        context: "Custom commit status test"
-
-  - label: 'Hello'
-    command: "echo hi"
-Command
+echo "  - label: 'Soft fail with custom gh commit status'"
+echo "    command: \"sleep 5 && make test\""
+echo "    soft_fail: true"
+echo "    notify:"
+echo "    - github_commit_status:"
+echo "        context: \"Custom commit status test\""
+echo "  - label: 'Hello'"
+echo "    command: \"echo hi\""
