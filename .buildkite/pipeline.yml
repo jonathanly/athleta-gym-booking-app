@@ -1,0 +1,66 @@
+# Integration test for Entire's GitHub mirror and Buildkite.
+# Bootstrap command in Buildkite: buildkite-agent pipeline upload
+# All test/build/deploy stages are simulations until the app rewrite starts.
+# No application dependencies, database, cloud credentials or deployment needed.
+steps:
+  - label: "Verify checkout"
+    key: checkout
+    command:
+      - git rev-parse --verify HEAD
+      - test -f .buildkite/pipeline.yml
+    timeout_in_minutes: 2
+
+  - label: "MOCK: Lint and typecheck"
+    key: quality
+    depends_on: checkout
+    command: 'echo "MOCK ONLY: would run lint and typecheck; no app checks run"'
+    timeout_in_minutes: 2
+
+  - label: "MOCK: Unit specs %n / %t"
+    key: unit
+    depends_on: checkout
+    parallelism: 2
+    # Defer expansion until each job runs. Buildkite's index is zero-based.
+    command: 'echo "MOCK ONLY: unit specs shard $$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT; no specs run"'
+    timeout_in_minutes: 2
+
+  - label: "MOCK: Feature specs %n / %t"
+    key: feature
+    depends_on: checkout
+    parallelism: 2
+    command: 'echo "MOCK ONLY: feature specs shard $$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT; no specs run"'
+    timeout_in_minutes: 2
+
+  - label: "MOCK: Build and package"
+    key: package
+    depends_on:
+      - quality
+      - unit
+      - feature
+    command: 'echo "MOCK ONLY: would build and package this commit; nothing is published"'
+    timeout_in_minutes: 2
+
+  - label: "MOCK: Deploy staging"
+    key: staging
+    depends_on: package
+    command: 'echo "MOCK ONLY: would deploy to staging; no deployment occurs"'
+    timeout_in_minutes: 2
+
+  - label: "MOCK: Staging smoke checks"
+    key: smoke
+    depends_on: staging
+    command: 'echo "MOCK ONLY: would check staging health and login; no smoke tests run"'
+    timeout_in_minutes: 2
+
+  - block: "MOCK: Approve production"
+    key: approve-production
+    depends_on: smoke
+    branches: master
+    prompt: "Demo gate only. Continuing prints a message and does not deploy."
+
+  - label: "MOCK: Deploy production"
+    key: production
+    depends_on: approve-production
+    branches: master
+    command: 'echo "MOCK ONLY: would deploy the approved release; no deployment occurs"'
+    timeout_in_minutes: 2
