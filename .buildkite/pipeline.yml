@@ -1,43 +1,62 @@
-# Integration test for Entire's GitHub mirror and Buildkite.
-# Bootstrap command in Buildkite: buildkite-agent pipeline upload
-# All test/build/deploy stages are simulations until the app rewrite starts.
-# No application dependencies, database, cloud credentials or deployment needed.
+# Entire mirror integration. Checks/build are real; release stages remain simulated.
+# Agents need Node 22, npm, and PostgreSQL with CREATE DATABASE permission.
+# Supply TEST_DATABASE_ADMIN_URL through CI secrets, never the demo DATABASE_URL.
 steps:
   - label: ":git: Verify checkout"
     key: checkout
     command:
       - git rev-parse --verify HEAD
       - test -f .buildkite/pipeline.yml
+      - node --version
     timeout_in_minutes: 2
 
-  - label: ":mag: Lint and typecheck (mock)"
+  - label: ":mag: Lint and typecheck"
     key: quality
     depends_on: checkout
-    command: 'echo "MOCK ONLY: would run lint and typecheck; no app checks run"'
-    timeout_in_minutes: 2
+    command:
+      - npm ci
+      - npm run lint
+      - npm run typecheck
+    timeout_in_minutes: 10
 
-  - label: ":test_tube: Unit specs %n / %t (mock)"
+  - label: ":test_tube: Unit specs %n / %t"
     key: unit
     depends_on: checkout
     parallelism: 2
-    # Defer expansion until each job runs. Buildkite's index is zero-based.
-    command: 'echo "MOCK ONLY: unit specs shard $$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT; no specs run"'
-    timeout_in_minutes: 2
+    command:
+      - npm ci
+      # Buildkite indices are zero-based; defer expansion until the job runs.
+      - npm run test:unit -- --shard=$$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT
+    timeout_in_minutes: 10
 
-  - label: ":globe_with_meridians: Feature specs %n / %t (mock)"
+  - label: ":globe_with_meridians: Feature specs %n / %t"
     key: feature
     depends_on: checkout
     parallelism: 2
-    command: 'echo "MOCK ONLY: feature specs shard $$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT; no specs run"'
-    timeout_in_minutes: 2
+    command:
+      - npm ci
+      - npx playwright install --with-deps chromium
+      - npm run test:feature -- --shard=$$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT --workers=1
+    artifact_paths:
+      - playwright-report/**/*
+      - test-results/**/*
+    timeout_in_minutes: 20
 
-  - label: ":package: Build and package (mock)"
-    key: package
+  - label: ":hammer: Build application"
+    key: build
     depends_on:
       - quality
       - unit
       - feature
-    command: 'echo "MOCK ONLY: would build and package this commit; nothing is published"'
+    command:
+      - npm ci
+      - npm run build
+    timeout_in_minutes: 15
+
+  - label: ":package: Package application (mock)"
+    key: package
+    depends_on: build
+    command: 'echo "MOCK ONLY: would package this commit; nothing is published"'
     timeout_in_minutes: 2
 
   - label: ":rocket: Deploy staging (mock)"
