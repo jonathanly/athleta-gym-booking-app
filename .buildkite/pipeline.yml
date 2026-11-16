@@ -1,6 +1,6 @@
 # Entire mirror integration. Checks/build are real; release stages remain simulated.
-# Agents need Node 22, npm, and PostgreSQL with CREATE DATABASE permission.
-# Supply TEST_DATABASE_ADMIN_URL through CI secrets, never the demo DATABASE_URL.
+# Hosted Linux agents need Node 22, npm, and a working Docker daemon.
+# Each feature shard starts its own disposable PostgreSQL 17 container.
 steps:
   - label: ":git: Verify checkout"
     key: checkout
@@ -36,7 +36,7 @@ steps:
     command:
       - npm ci
       - npx playwright install --with-deps chromium
-      - npm run test:feature -- --shard=$$((BUILDKITE_PARALLEL_JOB + 1))/$$BUILDKITE_PARALLEL_JOB_COUNT --workers=1
+      - bash .buildkite/test-feature.sh
     artifact_paths:
       - playwright-report/**/*
       - test-results/**/*

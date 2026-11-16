@@ -15,7 +15,7 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   webServer: baseURL ? {
-    command: `npm run dev -- --port ${new URL(baseURL).port}`,
+    command: `npm run build && npm start -- --port ${new URL(baseURL).port}`,
     url: `${baseURL}/api/health`,
     timeout: 120_000,
     reuseExistingServer: false,
