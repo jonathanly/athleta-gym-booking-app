@@ -1,90 +1,64 @@
-# Athleta 24/7 Gym Group Training Booking App
+# Athleta
 
-## Overview
-* [Project Brief](#project-brief)
-* [Project Presentation](#project-presentation)
-* [Business Problem](#business-problem)
-* [Technology Stack](#technology-stack)
-* [User Stories](#user-stories)
-* [MongoDB Schema Design](#mongodb-schema-design)
-* [Style Guide](#style-guide)
+A local gym booking demo: admins manage classes, members and attendance; members book, cancel and view their history. Gym times use Australia/Melbourne.
 
-## Project Brief
-- Design, build, deploy and present an application built for a real world customer.
-- Meet with the business owner or organisation manager to find out what challenges they face.
-- Find a problem that can be solved with an application.
+```text
+Browser -> Next.js / TypeScript -> Drizzle -> PostgreSQL
+           src/app/               src/lib/   drizzle/ (migrations)
+           src/components/ (UI)
+```
 
-The deployed webpage can be found [here](https://athletagym.herokuapp.com/).
+## Getting started
 
-[Return to overview](#overview)
+You'll need Node.js 22.13+, npm and Docker Compose.
 
-## Project Presentation
-Presentation slides for the project can be found [here](https://docs.google.com/presentation/d/1CHX9-wuKX2Up9qWPSobCOzV4RdjpDzKCRQ78UtRbA4k/edit?usp=sharing).
+```sh
+cp .env.example .env
+npm ci
+docker compose up -d --wait postgres
+npm run db:migrate
+npm run db:seed
+npm run dev
+```
 
-[Return to overview](#overview)
+Open [the login page](http://127.0.0.1:3000/login):
 
-## Business problem
-* Group training sessions are an integral part of what is offered by Athleta 24/7.
-* Current maintenance requires manual editing of training sessions and timetable.
-* Gym members sign up to these classes via phone or paper forms.
-* Updates to timetable can be tedious & time consuming.
-* Poor tracking of class statistics, such class attendance.
-* Member bookings can be misplaced due to manual handling.
+| Role | Email | Password |
+| --- | --- | --- |
+| Admin | `admin@athleta.local` | `AthletaDemo123!` |
+| Member | `member@athleta.local` | `AthletaDemo123!` |
 
+Seeded records are fictional; credentials are for local use only. Seeding skips populated databases. PostgreSQL data persists across restarts; stop it without deleting data:
 
-[Return to overview](#overview)
+```sh
+docker compose stop postgres
+```
 
-## Technology stack
-**Front-end:**
-* ReactJS  
+Connection settings live in `.env` (PostgreSQL: `127.0.0.1:5434`). Rerun `npm run db:migrate` after schema changes.
 
-**Back-end:**
-* MongoDB
-* NodeJS
-* ExpressJS
+## Checks
 
-[Return to overview](#overview)
+```sh
+npm run lint
+npm run typecheck
+npm run test:unit
+```
 
-## User Stories
-### Admin/Staff
-- As an admin, I want to view an index of all currently available training sessions on the weekly timetable.
-- As an admin, I want to be able to quickly search through the training session index
-- As an admin, I want to add, remove and/or update group training sessions from the weekly timetable.
-- As an admin, I want to retrieve booking details for a specific class.
-- As an admin, I want to view attendance rates for a specific class.
-- As an admin, I want to view an index of users using the app.
+Keep PostgreSQL running for API/browser tests; install Chromium once:
 
-### Users
-- As a user, I want to sign up to the website.
-- As a user, I want to view the training session timetable with relevant information on the sessions.
-- As a user, I want to easily book a specific training session by training session title, time and date.
-- As a user, I want to view my account details, and edit them if needed in the future.
-- As a user, I want to view past bookings to track my training session history.
-- As a user, I want to view future bookings to track what classes I'm booked in for.
-- As a user, I want to remove bookings if I can no longer attend them.
+```sh
+npx playwright install chromium
+npm run test:feature
+```
 
-[Return to overview](#overview)
+Feature tests create/drop a temporary database using `.env`'s `TEST_DATABASE_ADMIN_URL` (requires CREATE DATABASE), leaving your demo database alone. They build the production app; use a separate checkout from production previews because both write `.next`.
 
-## MongoDB Schema Design
-![MongoDB Schema](https://github.com/jonathanly/Files/blob/master/Athleta%2024:7/AthletaAppSchema.png)
+For a production preview:
 
-[Return to overview](#overview)
+```sh
+npm run build && npm start
+```
 
-## Other Packages and Tools
-* [React-router v4](https://reacttraining.com/react-router/)
-* [Axios](https://github.com/mzabriskie/axios)
-* [MUI-CSS](https://www.muicss.com/)
-* [Heroku](https://www.heroku.com)
-* [Sketch](https://www.sketchapp.com)
-* [Trello](https://www.trello.com)
+Buildkite checks the app, but **(mock)** release steps only print messages—nothing is deployed. This isn't production-ready; payments, email delivery and MongoDB migration aren't included.
 
-[Return to overview](#overview)
-
-## Style Guide
-### CSS framework
-As the sole developer working on this project, the decision was made to use MUI-CSS to provide styled components in order to focus on learning the React library. MUI-CSS is also rich in features (component based) that easily integrate with React, which I think would enhance the user experience. MUI-CSS design is clean, minimal and flat, which fits in to my design aesthestic direction.
-
-### Colour
-The colours selected were based the client's existing website. Naturally, I decided the app should complement the client's chosen colour scheme.
-
-[Return to overview](#overview)
+More: [API contract](docs/api-contract.md), [design notes](DESIGN.md), [delivery plan](docs/plans/modernisation.md).
