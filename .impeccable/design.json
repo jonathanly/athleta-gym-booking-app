@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-16T06:25:00Z",
+  "title": "Design system: Athleta",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "dialog",
+        "value": "0 16px 64px #12261c30",
+        "purpose": "Focused modal task above the workspace"
+      }
+    ],
+    "breakpoints": [
+      { "name": "rail-stack", "value": "1230px" },
+      { "name": "compact-desktop", "value": "1000px" },
+      { "name": "bottom-navigation", "value": "760px" },
+      { "name": "stacked-rows", "value": "580px" }
+    ],
+    "motion": [
+      {
+        "name": "loading",
+        "value": "spin 1.4s linear infinite",
+        "purpose": "A small pending-state spinner only; disabled for reduced motion"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Clear green action, including roster check-in",
+      "html": "<button class=\"ds-primary\">Check in</button>",
+      "css": ".ds-primary{background:var(--green,#216b4a);color:white;border:0;border-radius:7px;padding:10px 14px;font:500 12px system-ui;min-height:40px;cursor:pointer}.ds-primary:hover{background:var(--green-dark,#195237)}.ds-primary:focus-visible{outline:3px solid #398563;outline-offset:3px}.ds-primary:disabled{opacity:.55}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet edit or cancellation entry action",
+      "html": "<button class=\"ds-secondary\">Edit class</button>",
+      "css": ".ds-secondary{background:white;color:var(--ink,#202b27);border:1px solid var(--line,#dce0d9);border-radius:7px;padding:10px 14px;font:500 12px system-ui;min-height:40px;cursor:pointer}.ds-secondary:hover{background:#eef3ec}.ds-secondary:focus-visible{outline:3px solid #398563;outline-offset:3px}"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "description": "Visible label and restrained native control",
+      "html": "<label class=\"ds-field\">Class name<input value=\"Strength foundations\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:8px;color:var(--ink,#202b27);font:12px system-ui}.ds-field input{border:1px solid var(--line,#dce0d9);border-radius:7px;padding:9px 12px;min-height:40px;font:13px system-ui;color:inherit;background:white;box-sizing:border-box;caret-color:#216b4a}.ds-field input:focus-visible{outline:3px solid #398563;outline-offset:3px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Forest navigation with lime active icon",
+      "html": "<nav class=\"ds-nav\"><a aria-current=\"page\" href=\"#\">Schedule</a><a href=\"#\">Members</a></nav>",
+      "css": ".ds-nav{background:var(--forest,#192e27);padding:16px;font:13px system-ui}.ds-nav a{display:block;color:#f6f6f2;padding:12px;border-radius:7px;text-decoration:none;margin-bottom:4px}.ds-nav a[aria-current],.ds-nav a:hover{background:var(--forest-raised,#30483c)}.ds-nav a:focus-visible{outline:3px solid #d6e78a;outline-offset:3px}"
+    },
+    {
+      "name": "Attendance status",
+      "kind": "chip",
+      "description": "Textual status, never colour alone",
+      "html": "<span class=\"ds-status\">Checked in</span>",
+      "css": ".ds-status{display:inline-flex;padding:5px 7px;border-radius:5px;background:#eef3ee;color:#366347;font:500 11px system-ui;line-height:1.4}"
+    },
+    {
+      "name": "Live class panel",
+      "kind": "card",
+      "refersTo": "live-panel",
+      "description": "Court-lime is earned by current activity",
+      "html": "<section class=\"ds-live\"><p>On the floor now</p><h3>Strength foundations</h3><span>Members checked in</span><strong>3 / 6</strong></section>",
+      "css": ".ds-live{background:var(--forest,#192e27);color:#f6f6f2;border-radius:12px;padding:20px;font:12px system-ui;max-width:248px}.ds-live p,.ds-live strong{color:var(--lime,#d6e78a)}.ds-live h3{font-size:16px;font-weight:600;line-height:1.5}.ds-live strong{float:right;font-size:14px;font-weight:500}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Calm operations",
+    "overview": "Staff use this workspace between classes and at the gym desk. It prioritises scanning the day, finding a member and recording an arrival. The user-approved compact operations prototype is the authority, not the incomplete legacy interface.",
+    "keyCharacteristics": ["Calm", "Exact", "Welcoming"],
+    "rules": [
+      {
+        "name": "The Live Activity Rule",
+        "body": "Use court-lime where a real current class or check-in count earns it; never scatter it across ordinary controls.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do preserve compact density and readable row hierarchy.",
+      "Do keep 12px dropdown-chevron insets consistent across all forms.",
+      "Do present actual API counts and distinct permission-specific navigation.",
+      "Do distinguish synthetic local demo seed records from real gym claims."
+    ],
+    "donts": [
+      "Don't introduce gradients, decorative charts, fake avatars, emoji icons or all-caps labels.",
+      "Don't ship fixtures, a role switch, browser token storage or fabricated fallback data.",
+      "Don't reinterpret the approved design direction when adding a new workflow."
+    ]
+  }
+}
